@@ -8,8 +8,8 @@ const fileUpload = require('express-fileupload')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'monika',
-  password:'0000',
+  user: 'root',
+  password:'',
   database: 'auctiondb',
 })
 
@@ -21,14 +21,21 @@ const server = require('http').createServer(app)
 
 app.use(cors({credentials: true, origin: true}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
 
-conn.connect(err => {
-  if(err) throw err;
-  console.log('MySQL connected')
+//Connecting to database with error catching
+conn.connect((req,res,err) => {
+  if(err) {
+    console.log(err)
+  }else {
+    console.log('Database connected!')
+  }
+  // if(err) throw err;
+  // console.log('MySQL connected')
 })
 
-
-server.listen(3000, () => {
-  console.log('Server is listening')
+//Listening on port
+const port = 3000
+server.listen(port, () => {
+  console.log(`Server is listening on port: ${port}`)
 })
 
 
