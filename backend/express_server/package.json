@@ -9,6 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD:backend/express_server/package.json
     "mysql": "^2.18.1"
+=======
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.0",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.5"
+>>>>>>> 15170c78d75373c4ce8f083363ffd25b86a1b6e4:backend/package.json
   }
 }
