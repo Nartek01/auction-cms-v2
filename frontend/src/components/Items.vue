@@ -4,14 +4,15 @@
     <form action="POST">
       <p class="h4 text-center mb-4"></p>
       <div class="grey-text">
-        <mdb-input label="Product name" group type="text" validate error="wrong" success="right" />
+        <mdb-input v-model="name" label="Product name" group type="text" validate error="wrong" success="right" />
 
-        <mdb-textarea :row="2" label="Product description" />
+        <mdb-textarea v-model="description" :row="2" label="Product description" />
       </div>
 
      
         <mdb-input
         label="Product start price"
+        v-model="startPrice"
         group type="number"
         validate
         error="wrong"
@@ -75,7 +76,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+//import axios from 'axios'
 import { mdbInput, mdbBtn, mdbTextarea } from "mdbvue";
 
 export default {
@@ -106,22 +107,43 @@ export default {
       this.photo = event.target.files[0];
     },
 
+   async addProduct() {
+                if (this.name) {
+                   
+                    const response = await fetch("http://localhost:3000/items", {
+                        "method": "POST",
+                        "headers": {
+                            "content-type": "application/json"
+                        },
+                        "body":
+                            JSON.stringify({name: this.name, description: this.description,price: this.startPrice})
+                    })
+                    const data = await response.json()
+                    if (data.status === '200') {
+                        alert('All is good')
+                    } else {
+                        alert('Something went wrong!')
+                    }
 
+                } else {
+                    alert('Please enter the name of your product')
+                }
+            }
 
-async addProduct(){
-    let formData = new FormData()
-  formData.append('name',this.name)
-  formData.append('description', this.description)
-  formData.append('price',this.startPrice)
+// async addProduct(){
+//     let formData = new FormData()
+//   formData.append('name',this.name)
+//   formData.append('description', this.description)
+//   formData.append('price',this.startPrice)
 
-   await axios.post("http://3000/items",formData)
-   .then(function (result) {
-      alert(result);
-    }, function (error) {
-      alert(error);
-    });
+//    await axios.post("http://3000/items",formData)
+//    .then(function (result) {
+//       alert(result);
+//     }, function (error) {
+//       alert(error);
+//     });
 
-}
+// }
 }
 }
 
