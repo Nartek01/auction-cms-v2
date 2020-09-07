@@ -110,16 +110,16 @@ export default {
    async addProduct() {
                 if (this.name) {
                    
-                    const response = await fetch("http://localhost:3000/items", {
+                    const response = await fetch("http://localhost:3000/products", {
                         "method": "POST",
                         "headers": {
                             "content-type": "application/json"
                         },
                         "body":
-                            JSON.stringify({name: this.name, description: this.description,price: this.startPrice})
+                            JSON.stringify({product_name: this.name, description: this.description,price: this.startPrice})
                     })
                     const data = await response.json()
-                    if (data.status === '200') {
+                    if (data.status == '200') {
                         alert('All is good')
                     } else {
                         alert('Something went wrong!')

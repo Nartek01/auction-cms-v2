@@ -14,7 +14,6 @@ const conn = mysql.createConnection({
 })
 
 
-
 var app = express()
 
 const server = require('http').createServer(app)
@@ -28,8 +27,6 @@ conn.connect((req,res,err) => {
   }else {
     console.log('Database connected!')
   }
-  // if(err) throw err;
-  // console.log('MySQL connected')
 })
 
 //Listening on port
@@ -40,7 +37,7 @@ server.listen(port, () => {
 
 
 app.get('/', function (req, res) {
-  conn.query('SELECT * FROM user', function (error, results) {
+  conn.query('SELECT * FROM products', function (error, results) {
       if (error, console.log('There is an issue')) throw error; 
       return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
   });
