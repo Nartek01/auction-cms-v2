@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-const mariadb = require('mariadb');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload')
+
+
 
 const conn = mysql.createConnection({
   host: 'localhost',
@@ -11,11 +13,13 @@ const conn = mysql.createConnection({
   database: 'auctiondb',
 })
 
+
+
 var app = express()
+
 const server = require('http').createServer(app)
 
-app.use(cors(), express.json(),bodyParser.json())
-
+app.use(cors({credentials: true, origin: true}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
 
 conn.connect(err => {
   if(err) throw err;
@@ -29,10 +33,20 @@ server.listen(3000, () => {
 
 
 app.get('/', function (req, res) {
-  conn.query('SELECT * FROM products', function (error, results, fields) {
+  conn.query('SELECT * FROM user', function (error, results) {
       if (error, console.log('There is an issue')) throw error; 
       return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
   });
 });
+
+app.post('/products',(req, res) => {
+  let data = {product_name: req.body.product_name, description: req.body.description, price: req.body.price};
+  let sql = "INSERT INTO products SET ?";
+  let query = conn.query(sql, data,(error, results) => {
+    if(error) throw error;
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  });
+});
+
 
 

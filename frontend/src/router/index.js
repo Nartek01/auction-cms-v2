@@ -2,8 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Dashboard from '@/components/Dashboard'
 import Profile from '@/components/Profile'
-import Tables from '@/components/Tables'
-import Maps from '@/components/Maps'
+import Items from '@/components/Items'
 import BadGateway from '@/components/BadGateway'
 import Auctions from '@/components/Auctions'
 import Invoices from '@/components/Invoices'
@@ -13,6 +12,7 @@ import Notifications from '@/components/Notifications'
 import Latestbids from '@/components/Latestbids'
 import Adduser from '@/components/Adduser'
 import Adduserv2 from '@/components/Adduserv2'
+import AddItem from '@/components/AddItem'
 Vue.use(Router);
 
 export default new Router({
@@ -79,16 +79,17 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/tables',
-      name: 'Tables',
+      path: '/items',
+      name: 'Items',
       props: { page: 3 },
-      component: Tables
-    },
-    {
-      path: '/maps',
-      name: 'Maps',
-      props: { page: 4 },
-      component: Maps
+      component: Items,
+      children: [
+        {
+          path: "/items/add",
+          name: "AddItem",
+          component: AddItem,
+    }
+  ]
     },
     {
       path: '/404',
