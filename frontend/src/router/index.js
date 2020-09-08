@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Dashboard from '@/components/Dashboard'
 import Profile from '@/components/Profile'
-import Items from '@/components/Items'
+import Objects from '@/components/Objects'
 import BadGateway from '@/components/BadGateway'
 import Auctions from '@/components/Auctions'
 import Invoices from '@/components/Invoices'
@@ -79,10 +79,10 @@ export default new Router({
       component: Profile
     },
     {
-      path: '/items',
-      name: 'Items',
+      path: '/objects',
+      name: 'Objects',
       props: { page: 3 },
-      component: Items,
+      component: Objects,
       children: [
         {
           path: "/items/add",

@@ -50,11 +50,11 @@
             ><mdb-icon icon="user" class="mr-3" />Profile</mdb-list-group-item
           >
         </router-link>
-        <router-link to="/items" @click.native="activeItem = 3">
+        <router-link to="/objects" @click.native="activeItem = 3">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 3 && 'active'"
-            ><mdb-icon icon="table" class="mr-3" />Items</mdb-list-group-item
+            ><mdb-icon icon="table" class="mr-3" />Objects</mdb-list-group-item
           >
         </router-link>
 
