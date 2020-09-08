@@ -37,8 +37,12 @@ server.listen(port, () => {
 
 app.get('/', function (req, res) {
   conn.query('SELECT * FROM products', function (error, results) {
-    if (error, console.log('There is an issue')) throw error; 
-    return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
+    if (error) { 
+      console.log('There is an issue')
+      throw error
+      } else {
+        return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
+      }
   });
 })
 
