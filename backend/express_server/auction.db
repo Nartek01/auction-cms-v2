@@ -1,5 +1,5 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
+-- Host:                         localhost
 -- Server version:               10.5.5-MariaDB - Homebrew
 -- Server OS:                    osx10.14
 -- HeidiSQL Version:             11.0.0.5919
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.products: ~5 rows (approximately)
+-- Dumping data for table auctiondb.products: ~4 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `product_name`, `description`, `price`) VALUES
 	(1, 'earrings', 'desc goes here', 999),

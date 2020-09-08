@@ -8,8 +8,8 @@ const fileUpload = require('express-fileupload')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password:'',
+  user: 'monika',
+  password:'0000',
   database: 'auctiondb',
 })
 
@@ -18,7 +18,18 @@ var app = express()
 
 const server = require('http').createServer(app)
 
-app.use(cors({credentials: true, origin: true}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
+app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
+
+// fixing CORS issues
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE" // what matters here is that OPTIONS is present
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
 
 //Connecting to database with error catching
 conn.connect((req,res,err) => {
@@ -36,7 +47,7 @@ server.listen(port, () => {
 })
 
 
-app.get('/', function (req, res) {
+app.get('/products', function (req, res) {
   conn.query('SELECT * FROM products', function (error, results) {
       if (error, console.log('There is an issue')) throw error; 
       return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
@@ -46,7 +57,7 @@ app.get('/', function (req, res) {
 app.post('/products',(req, res) => {
   let data = {product_name: req.body.product_name, description: req.body.description, price: req.body.price};
   let sql = "INSERT INTO products SET ?";
-  let query = conn.query(sql, data,(error, results) => {
+  conn.query(sql, data,(error, results) => {
     if(error) throw error;
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });

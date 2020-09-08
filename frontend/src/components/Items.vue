@@ -113,7 +113,8 @@ export default {
                     const response = await fetch("http://localhost:3000/products", {
                         "method": "POST",
                         "headers": {
-                            "content-type": "application/json"
+                            "content-type": "application/json",
+                             "Access-Control-Allow-Origin": "*",
                         },
                         "body":
                             JSON.stringify({product_name: this.name, description: this.description,price: this.startPrice})
@@ -129,21 +130,6 @@ export default {
                     alert('Please enter the name of your product')
                 }
             }
-
-// async addProduct(){
-//     let formData = new FormData()
-//   formData.append('name',this.name)
-//   formData.append('description', this.description)
-//   formData.append('price',this.startPrice)
-
-//    await axios.post("http://3000/items",formData)
-//    .then(function (result) {
-//       alert(result);
-//     }, function (error) {
-//       alert(error);
-//     });
-
-// }
 }
 }
 
