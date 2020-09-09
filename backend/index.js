@@ -8,8 +8,8 @@ const fileUpload = require('express-fileupload')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password:'',
+  user: 'nartek01',
+  password:'Klerqwmcy8712',
   database: 'auctiondb',
 })
 
@@ -52,7 +52,8 @@ app.get('/products', function (req, res) {
       // if (error, console.log('There is an issue')) throw error; 
       // return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
       if (error) {
-        console.log('There is an issue with GET /products on backend:index.js')
+        console.log(req)
+        console.log('There is an issue with GET /products on backend:index.js, dumping error')
         throw error
       }else {
         return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
