@@ -52,7 +52,7 @@ app.get('/products', function (req, res) {
       // if (error, console.log('There is an issue')) throw error; 
       // return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
       if (error) {
-        console.log('There is an issue')
+        console.log('There is an issue with GET /products on backend:index.js')
         throw error
       }else {
         return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
@@ -65,8 +65,14 @@ app.post('/products',(req, res) => {
     start_price: req.body.startPrice, reserve_price: req.body.reservePrice, currency: req.body.currency, date_added: req.body.date,};
   let sql = "INSERT INTO products SET ?";
   conn.query(sql, data,(error, results) => {
-    if(error) throw error;
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+    if(error) {
+      console.log('There is an issue with POST /products on backend:index.js, dumping error')
+      throw error
+    } else {
+      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+    }
+    // if(error) throw error;
+    // res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
   });
 });
 
