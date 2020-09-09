@@ -8,8 +8,8 @@ const fileUpload = require('express-fileupload')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'nartek01',
-  password:'Klerqwmcy8712',
+  user: 'root',
+  password:'',
   database: 'auctiondb',
 })
 
