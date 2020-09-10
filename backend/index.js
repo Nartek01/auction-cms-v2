@@ -2,8 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const fileUpload = require('express-fileupload')
-
+const multer  = require('multer')
 
 
 const conn = mysql.createConnection({
@@ -20,12 +19,12 @@ const server = require('http').createServer(app)
 
 app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
 
-// fixing CORS issues
+//CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE" // what matters here is that OPTIONS is present
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE" 
   );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   next();
@@ -49,8 +48,7 @@ server.listen(port, () => {
 
 app.get('/products', function (req, res) {
   conn.query('SELECT * FROM products', function (error, results) {
-      // if (error, console.log('There is an issue')) throw error; 
-      // return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
+     
       if (error) {
         console.log(req)
         console.log('There is an issue with GET /products on backend:index.js, dumping error')
@@ -72,10 +70,38 @@ app.post('/products',(req, res) => {
     } else {
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
     }
-    // if(error) throw error;
-    // res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+   
   });
 });
 
 
 
+//uploading images
+
+const fileFilter = function (res,file,cb) {
+  const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+
+  if(!allowedTypes.includes(file.mimetype)){
+    const error = new Error("Wrong file type");
+    error.code = "LIMIT_FILE_TYPES";
+    return cb(error,false)
+  }
+  cb(null,true)
+}
+
+
+const upload = multer ({
+  dest: './assets',
+  fileFilter
+})
+
+app.post('/upload', upload.single('photo'),(req, res) => {
+ res.json({file: req.photo})
+})
+
+app.use(function(err,req,res,next){
+  if(err.code === "LIMIT_FILE_TYPES"){
+    res.status(422).json({error:"Only images are allowed"})
+    return
+  }
+})
