@@ -3,12 +3,13 @@ const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const multer  = require('multer')
+const path = require('path')
 
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'root',
-  password:'',
+  user: 'monika',
+  password:'0000',
   database: 'auctiondb',
 })
 
@@ -18,7 +19,7 @@ var app = express()
 const server = require('http').createServer(app)
 
 app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(),  bodyParser.json(),bodyParser.urlencoded({extended: true}))
-app.use(express.static('assets'));
+app.use(express.static(path.join(__dirname, 'assets')));
 
 //CORS
 app.use((req, res, next) => {
@@ -79,6 +80,18 @@ app.post('/products',(req, res) => {
 
 //uploading images
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'assets/')
+  },
+ 
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+  }
+})
+
+
+
 const fileFilter = function (res,file,cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
@@ -91,13 +104,32 @@ const fileFilter = function (res,file,cb) {
 }
 
 
+
 const upload = multer ({
-  dest: './assets',
+  storage:storage,
   fileFilter
 })
 
 app.post('/upload', upload.single('photo'),(req, res) => {
- res.json({file: req.photo})
+res.json({image: req.photo}) 
+if (!req.file) {
+  console.log("No file received");
+    message = "Error! in image upload."
+  res.render('index',{message: message, status:'danger'});
+} else {
+
+let data = {image : req.file.filename}
+let sql = "INSERT INTO products SET ?";
+ conn.query=(sql,data, (err, res)=>{
+  if(err) {
+    console.log('There is an issue with POST /products on backend:index.js, dumping error')
+    throw err
+  } else {
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  }
+
+ })
+}
 })
 
 app.use(function(err,req,res,next){
