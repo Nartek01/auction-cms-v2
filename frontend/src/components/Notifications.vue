@@ -1,6 +1,6 @@
 <template>
   <section id="notifications">
-    <h1>Notifications here!</h1>
+    <h1>Notifications go here!</h1>
             <mdb-col lg="6" class="mb-4">
           <mdb-card>
             <mdb-card-body>
@@ -8,7 +8,7 @@
                 <div class="text-center mb-5">
                 </div>
                 <mdb-row>
-                <mdb-btn color="primary" size="sm" @click.native="showFluidModalTop = true">Permission sell</mdb-btn>
+                <!-- <mdb-btn color="primary" size="sm" @click.native="showFluidModalTop = true">Permission sell</mdb-btn> -->
                       <mdb-modal fullHeight position="top" :show="showFluidModalTop" @close="showFluidModalTop = false">
                         <mdb-modal-header>
                           <mdb-modal-title>Account Credentials updated!</mdb-modal-title>

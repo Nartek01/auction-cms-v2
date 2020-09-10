@@ -1,12 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Dashboard from '@/components/Dashboard'
-import Profile from '@/components/Profile'
 import Objects from '@/components/Objects'
 import BadGateway from '@/components/BadGateway'
 import Auctions from '@/components/Auctions'
 import Invoices from '@/components/Invoices'
-import Settings from '@/components/Settings'
 import Management from '@/components/Managements'
 import Notifications from '@/components/Notifications'
 import Latestbids from '@/components/Latestbids'
@@ -47,12 +44,7 @@ export default new Router({
       component: Management,
       props: { page: 9 }
     },
-    {
-      path: '/settings',
-      name: 'Settings',
-      component: Settings,
-      props: { page: 8 }
-    },
+   
     {
       path: '/invoices',
       name: 'Invoices',
@@ -65,19 +57,7 @@ export default new Router({
       component: Auctions,
       props: { page: 6 }
     },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard,
-      props: { page: 1 },
-      alias: '/'
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      props: { page: 2 },
-      component: Profile
-    },
+  
     {
       path: '/objects',
       name: 'Objects',
