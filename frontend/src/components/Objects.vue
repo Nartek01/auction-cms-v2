@@ -88,6 +88,9 @@ export default {
 
 //Image uploading:
 
+
+
+
               fileChanged(event){
                 const photo = event.target.files
                 this.photo = photo
