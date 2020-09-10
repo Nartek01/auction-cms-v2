@@ -14,7 +14,7 @@
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
         <mdb-input v-model="reservePrice" label="Reserve price" group type="number" validate error="wrong" success="right" />
         <mdb-input v-model="currency" label="Currency" group type="text" validate error="wrong" success="right" />
-         <mdb-input label="Add image" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change="onFileChanged" accept="image/*" validate error="wrong" success="right" /> 
+         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change.native="fileChanged" accept="image/*" validate error="wrong" success="right" /> 
         <mdb-input v-model="date" label="Date" group type="text" validate error="wrong" success="right" />
        </div>
 
@@ -22,7 +22,7 @@
         <mdb-btn @click="addProduct()" outline="secondary">
           Add
         </mdb-btn>
-         <mdb-btn @click="imageUpload()" outline="secondary">
+         <mdb-btn @click="uploadImage()"  outline="secondary">
           Submit
         </mdb-btn>
       </div>
@@ -32,14 +32,14 @@
 
 <script>
 import axios from 'axios'
-import { mdbInput, mdbBtn, mdbTextarea } from "mdbvue";
+import { mdbInput, mdbBtn,mdbTextarea } from "mdbvue";
 
 export default {
   name: "Objects",
   components: {
     mdbInput,
     mdbBtn,
-    mdbTextarea,
+   mdbTextarea,
   },
   data() {
     return {
@@ -88,15 +88,18 @@ export default {
 
 //Image uploading:
 
-            onFileChange(event){
-              let selectedFile = event.target.files[0]
-         this.photo = selectedFile
-         
-       },
+              fileChanged(event){
+                const photo = event.target.files
+                this.photo = photo
+              },
 
-          async imageUpload(){
+          //  fileChanged(){
+          //    this.photo =this.$refs.file.files[0]
+          //  },
+
+          async uploadImage(){
             const formData = new FormData();
-            formData.append('photo', this.photo);
+            formData.append('photo', this.photo[0]);
             try{
               await axios.post('/upload',formData)
               alert('Success')

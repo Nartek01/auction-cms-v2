@@ -17,7 +17,8 @@ var app = express()
 
 const server = require('http').createServer(app)
 
-app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(), fileUpload(), bodyParser.json(),bodyParser.urlencoded({extended: true}))
+app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(),  bodyParser.json(),bodyParser.urlencoded({extended: true}))
+app.use(express.static('assets'));
 
 //CORS
 app.use((req, res, next) => {
