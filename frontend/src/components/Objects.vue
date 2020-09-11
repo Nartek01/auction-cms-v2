@@ -14,7 +14,7 @@
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
         <mdb-input v-model="reservePrice" label="Reserve price" group type="number" validate error="wrong" success="right" />
         <mdb-input v-model="currency" label="Currency" group type="text" validate error="wrong" success="right" />
-         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change.native="fileChanged" accept="image/*" validate error="wrong" success="right" /> 
+         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change.native="fileChanged($event)" accept="image/*" validate error="wrong" success="right" /> 
         <mdb-input v-model="date" label="Date" group type="text" validate error="wrong" success="right" />
        </div>
 
@@ -95,10 +95,6 @@ export default {
                 const photo = event.target.files
                 this.photo = photo
               },
-
-          //  fileChanged(){
-          //    this.photo =this.$refs.file.files[0]
-          //  },
 
           async uploadImage(){
             const formData = new FormData();

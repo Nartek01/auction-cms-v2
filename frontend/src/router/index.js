@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import Dashboard from '@/components/Dashboard'
 import Objects from '@/components/Objects'
 import BadGateway from '@/components/BadGateway'
 import Auctions from '@/components/Auctions'
@@ -56,6 +57,13 @@ export default new Router({
       name: 'Auctions',
       component: Auctions,
       props: { page: 6 }
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      props: { page: 1 },
+      alias: '/'
     },
   
     {

@@ -18,8 +18,9 @@ var app = express()
 
 const server = require('http').createServer(app)
 
+
 app.use(cors({credentials: true, origin: 'http://localhost:8080'}), express.json(),  bodyParser.json(),bodyParser.urlencoded({extended: true}))
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static('./assets'));
 
 //CORS
 app.use((req, res, next) => {
@@ -48,7 +49,7 @@ server.listen(port, () => {
 })
 
 
-app.get('/products', function (req, res) {
+app.get('/', function (req, res) {
   conn.query('SELECT * FROM products', function (error, results) {
      
       if (error) {
@@ -56,7 +57,7 @@ app.get('/products', function (req, res) {
         console.log('There is an issue with GET /products on backend:index.js, dumping error')
         throw error
       }else {
-        return res.send({ error: false, data: results, message: 'The data is send anyhow.' });
+        return res.send({ error: false, data: results, message: 'The data is send.' });
       }
   });
 });
@@ -82,16 +83,17 @@ app.post('/products',(req, res) => {
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'assets/')
+    cb(null, './assets')
   },
  
   filename: function (req, file, cb) {
+  
     cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
   }
 })
 
 
-
+//validating what type of images can be uploaded to the server
 const fileFilter = function (res,file,cb) {
   const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
 
@@ -115,10 +117,11 @@ res.json({image: req.photo})
 if (!req.file) {
   console.log("No file received");
     message = "Error! in image upload."
-  res.render('index',{message: message, status:'danger'});
+  res.send({message: message, status:'danger'});
 } else {
 
-let data = {image : req.file.filename}
+let data = {image: req.file.filename}
+console.log(data)
 let sql = "INSERT INTO products SET ?";
  conn.query=(sql,data, (err, res)=>{
   if(err) {

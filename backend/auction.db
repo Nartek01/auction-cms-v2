@@ -19,21 +19,53 @@ USE `auctiondb`;
 -- Dumping structure for table auctiondb.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `product_name` varchar(300) NOT NULL,
-  `description` varchar(300) NOT NULL,
-  `price` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+  `product_name` varchar(50) NOT NULL,
+  `description` varchar(1000) NOT NULL,
+  `category` varchar(50) NOT NULL,
+  `product_status` varchar(50) DEFAULT NULL,
+  `personal_number` bigint(20) DEFAULT NULL,
+  `start_price` int(11) DEFAULT NULL,
+  `reserve_price` int(11) NOT NULL,
+  `end_price` int(11) DEFAULT NULL,
+  `currency` varchar(30) DEFAULT NULL,
+  `image` longblob DEFAULT NULL,
+  `date_added` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `personal_number` (`personal_number`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`personal_number`) REFERENCES `users` (`personal_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.products: ~4 rows (approximately)
+-- Dumping data for table auctiondb.products: ~9 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `product_name`, `description`, `price`) VALUES
-	(1, 'earrings', 'desc goes here', 999),
-	(2, 'watch', 'desc goes here', 2999),
-	(3, 'test', 'desc goes here', 1999),
-	(4, 'test3', 'desc goes here', 199),
-	(5, 'e', 'e', 0);
+INSERT INTO `products` (`id`, `product_name`, `description`, `category`, `product_status`, `personal_number`, `start_price`, `reserve_price`, `end_price`, `currency`, `image`, `date_added`) VALUES
+	(2, 'Victorian lamp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Interiors', 'In auction', 7903095903, 1999, 1999, NULL, 'SEK', _binary 0x696D672E6A7067, '2020-09-08 18:55:07'),
+	(5, 'Vase', 'Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.', 'Interiors', 'New', 7903095903, 199, 250, NULL, 'SEK', _binary 0x696D67, 'today'),
+	(7, 'Earring', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Jewelery', 'New', 7903095903, 1999, 2999, NULL, 'SEK', _binary 0x6A7067, 'today'),
+	(8, 'Painting', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat."', 'Interiors', 'New', 7903095903, 5999, 6500, NULL, 'SEK', _binary 0x6A7067, 'today'),
+	(9, 'Test', 'Test', 'Test', 'Test', 7903095903, 2000, 2500, NULL, 'SEK', _binary 0x6A7067, 'today'),
+	(10, 'Test', 'Test', 'Test', 'Test', 7903095903, 2000, 2500, NULL, 'SEK', _binary 0x6A7067, 'today'),
+	(11, 'Table', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Interiors', 'New', 7903095903, 1999, 2600, NULL, 'SEK', _binary 0x6A7067, 'Today'),
+	(12, 'Table', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Interiors', 'New', 7903095903, 1999, 2600, NULL, 'SEK', _binary 0x6A7067, 'Today'),
+	(18, 't', 't', 't', 't', 7903095903, 1, 1, NULL, 's', NULL, 't');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+
+-- Dumping structure for table auctiondb.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `personal_number` bigint(20) NOT NULL,
+  `user_name` varchar(50) NOT NULL,
+  `given_name` varchar(50) NOT NULL,
+  `surname` varchar(50) NOT NULL,
+  `company_name` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone_number` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`personal_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table auctiondb.users: ~0 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` (`personal_number`, `user_name`, `given_name`, `surname`, `company_name`, `email`, `phone_number`) VALUES
+	(7903095903, 'Marcus', 'Marcus', 'Nilson', 'AuctionHouse', 'marcus.nilson@aucionhouse.se', '735324567');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
