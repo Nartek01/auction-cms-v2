@@ -14,16 +14,13 @@
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
         <mdb-input v-model="reservePrice" label="Reserve price" group type="number" validate error="wrong" success="right" />
         <mdb-input v-model="currency" label="Currency" group type="text" validate error="wrong" success="right" />
-         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change.native="fileChanged" accept="image/*" validate error="wrong" success="right" /> 
+         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="photo"  @change.native="fileChanged($event)" accept="image/*" validate error="wrong" success="right" /> 
         <mdb-input v-model="date" label="Date" group type="text" validate error="wrong" success="right" />
        </div>
 
       <div class="text-center">
         <mdb-btn @click="addProduct()" outline="secondary">
           Add
-        </mdb-btn>
-         <mdb-btn @click="uploadImage()"  outline="secondary">
-          Submit
         </mdb-btn>
       </div>
     </form>
@@ -33,7 +30,6 @@
 <script>
 import axios from 'axios'
 import { mdbInput, mdbBtn,mdbTextarea } from "mdbvue";
-
 export default {
   name: "Objects",
   components: {
@@ -57,9 +53,7 @@ export default {
         
     };
   },
-
   methods: {
-
        
   
    async addProduct() {
@@ -80,23 +74,16 @@ export default {
                     } else {
                         alert('Something went wrong!')
                     }
-
+                    await this.uploadImage()
                 } else {
                     alert('Please fill in the form')
                 }
             },
-
 //Image uploading:
-
               fileChanged(event){
                 const photo = event.target.files
                 this.photo = photo
               },
-
-          //  fileChanged(){
-          //    this.photo =this.$refs.file.files[0]
-          //  },
-
           async uploadImage(){
             const formData = new FormData();
             formData.append('photo', this.photo[0]);
@@ -108,10 +95,8 @@ export default {
               alert(err)
             }
           }
-
 }
 }
-
 </script>
 
 <style scoped>
