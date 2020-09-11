@@ -22,9 +22,6 @@
         <mdb-btn @click="addProduct()" outline="secondary">
           Add
         </mdb-btn>
-         <mdb-btn @click="uploadImage()"  outline="secondary">
-          Submit
-        </mdb-btn>
       </div>
     </form>
   </section>
@@ -80,6 +77,8 @@ export default {
                     } else {
                         alert('Something went wrong!')
                     }
+
+                    await this.uploadImage()
 
                 } else {
                     alert('Please fill in the form')

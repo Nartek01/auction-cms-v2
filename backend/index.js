@@ -63,12 +63,11 @@ app.get('/', function (req, res) {
 });
 
 app.post('/products',(req, res) => {
-  let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: req.body.status, personal_number: req.body.personalNumber, 
-    start_price: req.body.startPrice, reserve_price: req.body.reservePrice, currency: req.body.currency, date_added: req.body.date,};
+  let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: req.body.product_status, personal_number: req.body.personalNumber, 
+    start_price: req.body.startPrice, reserve_price: req.body.reserve_price, currency: req.body.currency, date_added: req.body.date_added,};
   let sql = "INSERT INTO products SET ?";
   conn.query(sql, data,(error, results) => {
     if(error) {
-      console.log('There is an issue with POST /products on backend:index.js, dumping error')
       throw error
     } else {
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -88,7 +87,7 @@ var storage = multer.diskStorage({
  
   filename: function (req, file, cb) {
   
-    cb(null, Date.now() + path.extname(file.originalname)) //Appending extension
+    cb(null, Date.now() + path.extname(file.originalname)) 
   }
 })
 
@@ -113,19 +112,19 @@ const upload = multer ({
 })
 
 app.post('/upload', upload.single('photo'),(req, res) => {
-res.json({image: req.photo}) 
+res.json({photo: req.photo}) 
 if (!req.file) {
   console.log("No file received");
     message = "Error! in image upload."
   res.send({message: message, status:'danger'});
 } else {
 
-let data = {image: req.file.filename}
+let data = {photo: req.file.filename}
 console.log(data)
 let sql = "INSERT INTO products SET ?";
  conn.query=(sql,data, (err, res)=>{
   if(err) {
-    console.log('There is an issue with POST /products on backend:index.js, dumping error')
+    //console.log('There is an issue with POST /products on backend:index.js, dumping error')
     throw err
   } else {
     res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
