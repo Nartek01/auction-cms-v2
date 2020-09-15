@@ -3,7 +3,6 @@ const cors = require('cors');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const multer  = require('multer')
-const path = require('path')
 
 
 const conn = mysql.createConnection({
@@ -63,8 +62,9 @@ app.get('/', function (req, res) {
 });
 
 app.post('/products',(req, res) => {
+  console.log(serverImageName);
   let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: req.body.product_status, personal_number: req.body.personal_number, 
-    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, date_added: req.body.date_added,};
+    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, image: serverImageName, date_added: req.body.date_added};
   let sql = "INSERT INTO products SET ?";
   conn.query(sql, data,(error, results) => {
     if(error) {
@@ -77,19 +77,16 @@ app.post('/products',(req, res) => {
 });
 
 
-
 //uploading images
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './assets')
-  },
- 
-  filename: function (req, file, cb) {
-  
-    cb(null, Date.now() + path.extname(file.originalname)) 
+var storage = multer.diskStorage({   
+  destination: function(req, file, cb) { 
+     cb(null, './assets');    
+  }, 
+  filename: function (req, file, cb) { 
+     serverImageName = Date.now() + "_" + file.originalname;
+     cb(null ,  serverImageName);   
   }
-})
+});
 
 
 //validating what type of images can be uploaded to the server
@@ -111,27 +108,36 @@ const upload = multer ({
   fileFilter
 })
 
-app.post('/upload', upload.single('photo'),(req, res) => {
-res.json({photo: req.photo}) 
-if (!req.file) {
-  console.log("No file received");
-    message = "Error! in image upload."
-  res.send({message: message, status:'danger'});
-} else {
+app.post('/upload', upload.single('photo'), async (req, res) => {
+  try {
+    const photo = req.file;
 
-let data = {photo: req.file.filename}
-console.log(data)
-let sql = "INSERT INTO products SET ?";
- conn.query=(sql,data, (err, res)=>{
-  if(err) {
-    //console.log('There is an issue with POST /products on backend:index.js, dumping error')
-    throw err
-  } else {
-    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+    if (!photo) {
+      res.status(400).send({
+          status: false,
+          data: 'No file is selected.'
+      })
+    } else {
+      // send response
+
+      res.send({
+        status: true,
+        message: 'File is uploaded.',
+
+        data: {
+          name: photo.originalname,
+          mimetype: photo.mimetype,
+          size: photo.size
+      }
+  });
+
+      }
+
+  } catch(err){
+    res.status(500).send(err);
+
   }
 
- })
-}
 })
 
 app.use(function(err,req,res,next){

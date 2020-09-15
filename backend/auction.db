@@ -28,25 +28,24 @@ CREATE TABLE IF NOT EXISTS `products` (
   `reserve_price` int(11) NOT NULL,
   `end_price` int(11) DEFAULT NULL,
   `currency` varchar(30) DEFAULT NULL,
-  `image` longblob DEFAULT NULL,
+  `image` varchar(50) DEFAULT NULL,
   `date_added` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `personal_number` (`personal_number`),
   CONSTRAINT `products_ibfk_1` FOREIGN KEY (`personal_number`) REFERENCES `users` (`personal_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.products: ~9 rows (approximately)
+-- Dumping data for table auctiondb.products: ~8 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `product_name`, `description`, `category`, `product_status`, `personal_number`, `start_price`, `reserve_price`, `end_price`, `currency`, `image`, `date_added`) VALUES
-	(2, 'Victorian lamp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Interiors', 'In auction', 7903095903, 1999, 1999, NULL, 'SEK', _binary 0x696D672E6A7067, '2020-09-08 18:55:07'),
-	(5, 'Vase', 'Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.', 'Interiors', 'New', 7903095903, 199, 250, NULL, 'SEK', _binary 0x696D67, 'today'),
-	(7, 'Earring', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Jewelery', 'New', 7903095903, 1999, 2999, NULL, 'SEK', _binary 0x6A7067, 'today'),
-	(8, 'Painting', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat."', 'Interiors', 'New', 7903095903, 5999, 6500, NULL, 'SEK', _binary 0x6A7067, 'today'),
-	(9, 'Test', 'Test', 'Test', 'Test', 7903095903, 2000, 2500, NULL, 'SEK', _binary 0x6A7067, 'today'),
-	(10, 'Test', 'Test', 'Test', 'Test', 7903095903, 2000, 2500, NULL, 'SEK', _binary 0x6A7067, 'today'),
-	(11, 'Table', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Interiors', 'New', 7903095903, 1999, 2600, NULL, 'SEK', _binary 0x6A7067, 'Today'),
-	(12, 'Table', '"Fusce ultrices vehicula purus a efficitur. Sed nec ex scelerisque, interdum libero dignissim, pulvinar ante. Curabitur vulputate egestas sem vel consequat. Sed consectetur neque nec orci iaculis fringilla. Cras sit amet venenatis erat.",', 'Interiors', 'New', 7903095903, 1999, 2600, NULL, 'SEK', _binary 0x6A7067, 'Today'),
-	(18, 't', 't', 't', 't', 7903095903, 1, 1, NULL, 's', NULL, 't');
+	(1, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
+	(2, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
+	(3, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
+	(4, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
+	(7, 'Victorian lamp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Interiors', 'In auction', NULL, 1999, 1999, NULL, 'SEK', 'img.jpg', '2020-09-15 01:26:26'),
+	(8, 'Earrings', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Jewelery', 'In auction', NULL, 3999, 4500, NULL, 'SEK', 'img.jpg', '2020-09-15 01:26:59'),
+	(9, 'Chair', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Ineriors', 'In auction', NULL, 399, 450, NULL, 'SEK', 'img.jpg', '2020-09-15 01:27:36'),
+	(10, 'Pocket watch', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Ineriors', 'In auction', NULL, 2000, 2450, NULL, 'SEK', 'img.jpg', '2020-09-15 01:28:04');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table auctiondb.users
