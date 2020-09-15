@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Objects from '@/components/Objects'
+import Dashboard from '@/components/Dashboard'
+import ObjectsList from '@/views/ObjectsList'
 import BadGateway from '@/components/BadGateway'
 import Auctions from '@/components/Auctions'
 import Invoices from '@/components/Invoices'
@@ -9,7 +10,7 @@ import Notifications from '@/components/Notifications'
 import Latestbids from '@/components/Latestbids'
 import Adduser from '@/components/Adduser'
 import Adduserv2 from '@/components/Adduserv2'
-import AddItem from '@/components/AddItem'
+import AddObject from '@/components/AddObject'
 Vue.use(Router);
 
 export default new Router({
@@ -57,20 +58,29 @@ export default new Router({
       component: Auctions,
       props: { page: 6 }
     },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      props: { page: 1 },
+      alias: '/'
+    },
   
     {
       path: '/objects',
       name: 'Objects',
       props: { page: 3 },
-      component: Objects,
-      children: [
-        {
-          path: "/items/add",
-          name: "AddItem",
-          component: AddItem,
-    }
-  ]
-    },
+      component: ObjectsList,
+   
+   },
+
+   {
+    path:  '/objects/addObject',
+    name: 'AddObject',
+    component: AddObject,
+   
+  },
+
     {
       path: '/404',
       name: 'BadGateway',

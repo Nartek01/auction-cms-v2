@@ -19,16 +19,25 @@
         <!-- <img alt="" class="img-fluid" src="./assets/logo-mdb-vue-small.png"> -->
         </a>
       <mdb-list-group class="list-group-flush">
-
-        <router-link to="/notifications" @click.native="activeItem = 1">
+        <router-link to="/dashboard" @click.native="activeItem = 1">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 1 && 'active'"
-            ><mdb-icon icon="users" class="mr-3" />Notifications</mdb-list-group-item
+            ><mdb-icon
+              icon="chart-pie"
+              class="mr-3"
+            />Admin Dashboard</mdb-list-group-item
           >
         </router-link>
-
-         <router-link to="/objects" @click.native="activeItem = 3">
+         <router-link to="/notifications" @click.native="activeItem = 10">
+          <mdb-list-group-item
+            :action="true"
+            :class="activeItem === 10 && 'active'"
+            ><mdb-icon icon="table" class="mr-3" />Notifications</mdb-list-group-item
+          >
+        </router-link>
+      
+        <router-link to="/objects" @click.native="activeItem = 3">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 3 && 'active'"
@@ -36,17 +45,13 @@
           >
         </router-link>
 
-
-         <router-link to="/auctions" @click.native="activeItem = 6">
+        <router-link to="/auctions" @click.native="activeItem = 6">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 6 && 'active'"
             ><mdb-icon icon="shopping-bag" class="mr-3" />Auctions</mdb-list-group-item
           >
         </router-link>
-
-
-       
         <router-link to="/latestbids" @click.native="activeItem = 11">
           <mdb-list-group-item
             :action="true"
@@ -54,8 +59,6 @@
             ><mdb-icon icon="gavel" class="mr-3" />Latest bids</mdb-list-group-item
           >
         </router-link>
-
-
         <router-link to="/invoices" @click.native="activeItem = 7">
           <mdb-list-group-item
             :action="true"
@@ -63,8 +66,6 @@
             ><mdb-icon icon="file-invoice-dollar" class="mr-3" />Invoices</mdb-list-group-item
           >
         </router-link>
-
-
         <router-link to="/managements" @click.native="activeItem = 9">
           <mdb-list-group-item
             :action="true"
@@ -72,9 +73,6 @@
             ><mdb-icon icon="users" class="mr-3" />Managements</mdb-list-group-item
           >
         </router-link>
-
-       
-
         <router-link to="/adduser" @click.native="activeItem = 12">
           <mdb-list-group-item
             :action="true"
