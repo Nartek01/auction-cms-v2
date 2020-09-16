@@ -64,8 +64,8 @@ app.get('/', function (req, res) {
 
 app.post('/products',(req, res) => {
   console.log(serverImageName);
-  let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: req.body.product_status, personal_number: req.body.personal_number, 
-    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, image: serverImageName, date_added: req.body.date_added};
+  let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: 'New', personal_number: req.body.personal_number, 
+    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, image: serverImageName, date_added: new Date()};
   let sql = "INSERT INTO products SET ?";
   conn.query(sql, data,(error, results) => {
     if(error) {

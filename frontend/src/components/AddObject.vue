@@ -9,13 +9,12 @@
         <mdb-textarea v-model="description" :row="2" label="Object description" />
       
       <mdb-input v-model="category" label="Category" group type="text" validate error="wrong" success="right" />
-      <mdb-input v-model="status" label="Status" group type="text" validate error="wrong" success="right" />
+     
       <mdb-input v-model="personalNumber" label="Seller (personal number to be entered)" group type="number" validate error="wrong" success="right"/>
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
         <mdb-input v-model="reservePrice" label="Reserve price" group type="number" validate error="wrong" success="right" />
         <mdb-input v-model="currency" label="Currency" group type="text" validate error="wrong" success="right" />
-         <mdb-input label="" ref="file" enctype="multipart/form-data" group type="file" name="file"  @change.native="fileChanged($event)" accept="image/*" validate error="wrong" success="right" /> 
-        <mdb-input v-model="date" label="Date" group type="text" validate error="wrong" success="right" />
+         <mdb-input label="" ref="files"  enctype="multipart/form-data" group type="file" name="files"  @change.native="fileChanged($event)" accept="image/*" validate error="wrong" success="right" /> 
        </div>
 
       <div class="text-center">
@@ -60,7 +59,7 @@ export default {
        
   
    async addProduct() {
-                 if (this.name && this.description && this.category && this.status && this.personalNumber && this.startPrice && this.reservePrice && this.currency && this.photo) {
+                 if (this.name && this.description && this.category && this.personalNumber && this.startPrice && this.reservePrice && this.currency && this.photo) {
 
                     if (this.photo) {
                         await this.uploadImage()
@@ -73,9 +72,10 @@ export default {
                             "content-type": "application/json"
                         },
                         "body":
-                            JSON.stringify({product_name: this.name, description: this.description, category: this.category, product_status: this.status,
-                            personal_number: this.personalNumber, start_price: this.startPrice, reserve_price: this.reservePrice, currency: this.currency, image: this.photo.name, date_added: this.date})
+                            JSON.stringify({product_name: this.name, description: this.description, category: this.category,
+                            personal_number: this.personalNumber, start_price: this.startPrice, reserve_price: this.reservePrice, currency: this.currency, image: this.photo.name, })
                     })
+
                     const data = await response.json()
                     if (data.status == '200') {
                         await this.$router.push({path: '/objects'})
