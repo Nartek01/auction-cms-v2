@@ -10,7 +10,7 @@
   </div>
 
     <objects v-for="product in products" :key="product.id" :name="product.product_name" :description="product.description" :category="product.category" :price="product.start_price" 
-    :reserve_price="product.reserve_price" :currency="product.currency"></objects>
+    :reserve_price="product.reserve_price" :currency="product.currency" :image="product.image" :seller="product.personal_number" :status="product.product_status"></objects>
   </div>
 </template>
 

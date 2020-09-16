@@ -7,15 +7,17 @@
             :src="image"
             class="img-fluid z-depth-1"
             alt="Image unavailable"
-            style="width: 500px"
+            style="width: 200px"
           />
         </div>
 
         <!-- Object info container-->
         <div class="p-2 ">
           Name:{{name}}
-          <br>Description: {{description}}
-          <br>Price:{{price}}
+          <br>Category: {{category}}
+          <br>Seller: {{seller}}
+          <br>Status: {{status}}
+          <br>Start price:{{price}} {{currency}}
         </div>
 
         <!-- Button container -->
@@ -40,7 +42,7 @@ export default {
     mdbBtn,
     mdbContainer
   },
-  props: ["name", "description","price", "image", "currency"],
+  props: ["name","price", "image", "currency", "category", "seller", "status"],
 };
 </script>
 

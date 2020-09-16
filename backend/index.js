@@ -54,7 +54,7 @@ app.get('/', function (req, res) {
      
       if (error) {
         console.log(req)
-        console.log('There is an issue with GET /products on backend:index.js, dumping error')
+        //console.log('There is an issue with GET /products on backend:index.js, dumping error')
         throw error
       }else {
         return res.send({ error: false, data: results, message: 'The data is send.' });
