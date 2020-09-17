@@ -11,13 +11,12 @@
       <mdb-dropdown>
     <mdb-dropdown-toggle slot="toggle">Catergory</mdb-dropdown-toggle>
     <mdb-dropdown-menu>
-      <mdb-dropdown-item>Option1</mdb-dropdown-item>
-      <mdb-dropdown-item>Option2</mdb-dropdown-item>
-      <mdb-dropdown-item>Option3</mdb-dropdown-item>
+      <mdb-dropdown-item v-model="category" label="Category" group type="text" validate error="wrong" success="right">Option1</mdb-dropdown-item>
+      <mdb-dropdown-item v-model="category" label="Category" group type="text" validate error="wrong" success="right">Option2</mdb-dropdown-item>
+      <mdb-dropdown-item v-model="category" label="Category" group type="text" validate error="wrong" success="right">Option3</mdb-dropdown-item>
     </mdb-dropdown-menu>
   </mdb-dropdown>
   <!-- Drop down menu end -->
-      <!-- <mdb-input v-model="category" label="Category" group type="text" validate error="wrong" success="right" /> -->
      
       <mdb-input v-model="personalNumber" label="Seller (personal number to be entered)" group type="number" validate error="wrong" success="right"/>
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
