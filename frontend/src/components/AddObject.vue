@@ -16,12 +16,20 @@
       <mdb-dropdown-item v-model="category" label="Category" group type="text" validate error="wrong" success="right">Option3</mdb-dropdown-item>
     </mdb-dropdown-menu>
   </mdb-dropdown>
-  <!-- Drop down menu end -->
+  <!-- .Drop down menu end -->
      
       <mdb-input v-model="personalNumber" label="Seller (personal number to be entered)" group type="number" validate error="wrong" success="right"/>
         <mdb-input v-model="startPrice" label="Start price" group type="number"  validate error="wrong" success="right"/>
         <mdb-input v-model="reservePrice" label="Reserve price" group type="number" validate error="wrong" success="right" />
-        <mdb-input v-model="currency" label="Currency" group type="text" validate error="wrong" success="right" />
+        <!-- Currency drop down menu -->
+        <mdb-dropdown>
+    <mdb-dropdown-toggle slot="toggle">Currency</mdb-dropdown-toggle>
+    <mdb-dropdown-menu>
+       <mdb-dropdown-item v-model="currency" label="Currency" group type="text" validate error="wrong" success="right">Sek</mdb-dropdown-item>
+       <mdb-dropdown-item v-model="currency" label="Currency" group type="text" validate error="wrong" success="right">Euro</mdb-dropdown-item>
+    </mdb-dropdown-menu>
+  </mdb-dropdown>
+        <!-- .Currency drop down menu -->
          <mdb-input label="" ref="files"  enctype="multipart/form-data" group type="file" name="files"  @change.native="fileChanged($event)" accept="image/*" validate error="wrong" success="right" /> 
        </div>
 
