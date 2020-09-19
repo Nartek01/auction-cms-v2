@@ -109,9 +109,9 @@ const upload = multer ({
   fileFilter
 })
 
-app.post('/upload', upload.single('photo'), async (req, res) => {
+app.post('/upload', upload.array('photo', 5), async (req, res) => {
   try {
-    const photo = req.file;
+    const photo = req.files;
 
     if (!photo) {
       res.status(400).send({
@@ -125,11 +125,11 @@ app.post('/upload', upload.single('photo'), async (req, res) => {
         status: true,
         message: 'File is uploaded.',
 
-        data: {
-          name: photo.originalname,
-          mimetype: photo.mimetype,
-          size: photo.size
-      }
+      //   data: {
+      //     name: photo.originalname,
+      //     mimetype: photo.mimetype,
+      //     size: photo.size
+      // }
   });
 
       }
