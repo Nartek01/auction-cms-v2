@@ -109,10 +109,13 @@ const upload = multer ({
   fileFilter
 })
 
-app.post('/upload', upload.array('photo', 5), async (req, res) => {
+app.post('/upload', upload.array('photo', 4), async (req, res) => {
   try {
+    const reqFiles = []
     const photo = req.files;
-
+for (let i =0; i < photo.length; i++ ){
+  reqFiles.push(photo[i])
+}
     if (!photo) {
       res.status(400).send({
           status: false,
@@ -125,11 +128,11 @@ app.post('/upload', upload.array('photo', 5), async (req, res) => {
         status: true,
         message: 'File is uploaded.',
 
-      //   data: {
-      //     name: photo.originalname,
-      //     mimetype: photo.mimetype,
-      //     size: photo.size
-      // }
+        data: {
+          name: photo.originalname,
+          mimetype: photo.mimetype,
+          size: photo.size
+      }
   });
 
       }
