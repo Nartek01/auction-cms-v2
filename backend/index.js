@@ -63,9 +63,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/products',(req, res) => {
-  console.log(serverImageName);
   let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: 'New', personal_number: req.body.personal_number, 
-    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, image: serverImageName, date_added: new Date()};
+    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency,date_added: new Date()};
   let sql = "INSERT INTO products SET ?";
   conn.query(sql, data,(error, results) => {
     if(error) {
@@ -76,6 +75,23 @@ app.post('/products',(req, res) => {
    
   });
 });
+
+//Uploading images to an image table. A problem with the 'id'(this is a foreign key from the product table) - both product details and images are uploaded the same time and dont know how to fetch product id and assing it to the image table.
+// id: LAST_INSERT_ID() -> is not working. The only option at the moment is to creat two buttons (first button adds products and the product id is created and then second button adds images)
+//this solution will not look professional though. 
+
+app.post('/images', (req,res)=>{
+  console.log(serverImageName);
+  let data = { image_name: serverImageName, id: LAST_INSERT_ID() }
+let sql = "INSERT INTO images SET?";
+conn.query(sql,data,(error,results)=> {
+  if(error) {
+    throw error
+  } else {
+    res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+  }
+})
+})
 
 
 //uploading images
