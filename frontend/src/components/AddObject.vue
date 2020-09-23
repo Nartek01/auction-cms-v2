@@ -121,6 +121,12 @@ export default {
 
   methods: {
     async addProduct() {
+
+
+        if (this.photo) {
+          await this.uploadImage();
+        }
+        
       if (
         this.name &&
         this.description &&
@@ -149,23 +155,6 @@ export default {
             currency: this.currency,
           }),
         });
-
-        if (this.photo) {
-          await this.uploadImage();
-        }
-
-        await fetch("http://localhost:3000/images", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-           body: JSON.stringify({
-            image: this.photo.name,
-            
-          }),
-
-        })
-  
 
         const data = await response.json();
         if (data.status == "200") {
