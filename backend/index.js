@@ -82,7 +82,9 @@ app.post('/products',(req, res) => {
 
 app.post('/images', (req,res)=>{
   console.log(serverImageName);
-  let data = { image_name: serverImageName, id: LAST_INSERT_ID() }
+  let id = "SELECT id FROM `products` WHERE id=(SELECT MAX(id) FROM `products`);"
+  console.log(id)
+  let data = { image_name: serverImageName, id: id }
 let sql = "INSERT INTO images SET?";
 conn.query(sql,data,(error,results)=> {
   if(error) {
