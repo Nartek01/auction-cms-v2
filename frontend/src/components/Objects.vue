@@ -18,6 +18,7 @@
           <br>Seller: {{seller}}
           <br>Status: {{status}}
           <br>Start price:{{price}} {{currency}}
+          <br>Product id: {{productNumber}}
         </div>
 
         <!-- Button container -->
@@ -42,7 +43,7 @@ export default {
     mdbBtn,
     mdbContainer
   },
-  props: ["name","price", "image", "currency", "category", "seller", "status"],
+  props: ["name","price", "image", "currency", "category", "seller", "status", "productNumber"],
 };
 </script>
 

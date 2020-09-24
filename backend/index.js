@@ -48,13 +48,12 @@ server.listen(port, () => {
   console.log(`Server is listening on port: ${port}`)
 })
 
-
-app.get('/', function (req, res) {
-  conn.query('SELECT * FROM products', function (error, results) {
+//fetching objects for the object list view
+app.get('/products', function (req, res) {
+  conn.query('SELECT * FROM products INNER JOIN images ON products.id = images.id', function (error, results) {
      
       if (error) {
         console.log(req)
-        //console.log('There is an issue with GET /products on backend:index.js, dumping error')
         throw error
       }else {
         return res.send({ error: false, data: results, message: 'The data is send.' });
@@ -62,7 +61,11 @@ app.get('/', function (req, res) {
   });
 });
 
+
+
 app.post('/products',(req, res) => {
+
+
   let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: 'New', personal_number: req.body.personal_number, 
     start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency,date_added: new Date()};
  
@@ -89,14 +92,22 @@ app.post('/products',(req, res) => {
   });
 });
 
-//uploading images
+//upload images code below
+
+
 var storage = multer.diskStorage({   
+
   destination: function(req, file, cb) { 
      cb(null, './assets');    
   }, 
   filename: function (req, file, cb) { 
+    
      serverImageName = Date.now() + "_" + file.originalname;
      cb(null ,  serverImageName);   
+     var arr = []
+    for(i = 0; i < arr.length; i++){
+      arr.push(serverImageName)
+    }
   }
 });
 
@@ -120,12 +131,13 @@ const upload = multer ({
   fileFilter
 })
 
+//storing multiple images in the assets folder
 app.post('/upload', upload.array('photo', 4), async (req, res) => {
   try {
     const reqFiles = []
     const photo = req.files;
 for (let i =0; i < photo.length; i++ ){
-  reqFiles.push(photo[i])
+  reqFiles.push(photo[i].serverImageName)
 }
     if (!photo) {
       res.status(400).send({

@@ -126,7 +126,7 @@ export default {
         if (this.photo) {
           await this.uploadImage();
         }
-        
+
       if (
         this.name &&
         this.description &&
