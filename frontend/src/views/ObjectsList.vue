@@ -28,7 +28,7 @@ export default {
  data(){
     return {
       products: [],
-      search: ''
+     
     }
   },
   mounted(){
@@ -42,15 +42,6 @@ export default {
       this.products = res.data    
   
       },
-
-      computed:{
-        filteredObjects(){
-          return this.products.filter((product)=>{
-             return product.id.match(this.search)
-          })
-        }
-      }
-
 
     }
     
