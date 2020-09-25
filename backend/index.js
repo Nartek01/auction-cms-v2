@@ -48,9 +48,12 @@ server.listen(port, () => {
   console.log(`Server is listening on port: ${port}`)
 })
 
+//'SELECT * FROM images GROUP BY image_ref'
+
+
 //fetching objects for the object list view
 app.get('/products', function (req, res) {
-  conn.query('SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref', function (error, results) {
+  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref', function (error, results) {
      
       if (error) {
         console.log(req)

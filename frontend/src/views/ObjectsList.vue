@@ -1,8 +1,6 @@
 <template>
   <div>
       <h1>Objects list</h1><br>
-    
-  
   <div>
    <router-link to="/objects/addObject">   
        <mdb-btn outline="secondary">
@@ -29,6 +27,7 @@ export default {
     return {
       products: [],
      
+     
     }
   },
   mounted(){
@@ -39,14 +38,18 @@ export default {
    async fetchData(){
       const val = await fetch("http://localhost:3000/products")
       const res = await val.json()
-      this.products = res.data    
+      let array = res.data   
+      
+  //filtering out images from the images table so that there's only one image showing in the object list
+  this.products = array.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i)
+
   
       },
 
     }
-    
-  
-  }
+
+}
+
 
 </script>
 
