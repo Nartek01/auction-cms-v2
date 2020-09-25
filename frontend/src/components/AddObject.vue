@@ -123,9 +123,10 @@ export default {
     async addProduct() {
 
 
-        if (this.photo) {
-          await this.uploadImage();
-        }
+          if(this.photo){
+            var imageRef = parseInt(Date.now() * Math.random());
+            await this.uploadImage(imageRef)
+          }
 
       if (
         this.name &&
@@ -150,7 +151,7 @@ export default {
             personal_number: this.personalNumber,
             start_price: this.startPrice,
             reserve_price: this.reservePrice,
-            image: this.photo.name,
+             image: imageRef,
             category: this.category,
             currency: this.currency,
           }),
@@ -171,15 +172,14 @@ export default {
       this.photo = event.target.files;
     },
 
-    async uploadImage() {
+    async uploadImage(imageRef) {
       try {
         const formData = new FormData();
-
+        
         for (const i of Object.keys(this.photo)) {
-          formData.append("photo", this.photo[i]);
+          formData.append("photo", this.photo[i]);          
         }
-
-        await axios.post("http://localhost:3000/upload", formData);
+       await axios.post("http://localhost:3000/upload?imageref="+imageRef, formData);
         alert("Success");
       } catch (err) {
         alert(err);

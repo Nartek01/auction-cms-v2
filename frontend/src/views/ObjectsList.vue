@@ -2,6 +2,7 @@
   <div>
       <h1>Objects list</h1><br>
     
+  
   <div>
    <router-link to="/objects/addObject">   
        <mdb-btn outline="secondary">
@@ -27,6 +28,7 @@ export default {
  data(){
     return {
       products: [],
+      search: ''
     }
   },
   mounted(){
@@ -39,6 +41,14 @@ export default {
       const res = await val.json()
       this.products = res.data    
   
+      },
+
+      computed:{
+        filteredObjects(){
+          return this.products.filter((product)=>{
+             return product.id.match(this.search)
+          })
+        }
       }
 
 

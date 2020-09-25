@@ -50,7 +50,7 @@ server.listen(port, () => {
 
 //fetching objects for the object list view
 app.get('/products', function (req, res) {
-  conn.query('SELECT * FROM products INNER JOIN images ON products.id = images.id', function (error, results) {
+  conn.query('SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref', function (error, results) {
      
       if (error) {
         console.log(req)
@@ -63,11 +63,12 @@ app.get('/products', function (req, res) {
 
 
 
+
 app.post('/products',(req, res) => {
 
-
+  console.log(req.body.image)
   let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,product_status: 'New', personal_number: req.body.personal_number, 
-    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency,date_added: new Date()};
+    start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency, image_ref: req.body.image, date_added: new Date()};
  
   let sql = "INSERT INTO products SET ?";
   
@@ -76,17 +77,7 @@ app.post('/products',(req, res) => {
       throw error
     } else {
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
-      let data2 = {image_name: serverImageName, id:results.insertId }
-      let sql2 = "INSERT INTO images SET ?"
-      conn.query(sql2,data2, (err,res)=>{
-        if(err){
-          throw err
-        } else {
-         console.log("Image has been added")
-        }
-      })
-
-
+     
     }
    
   });
@@ -104,10 +95,7 @@ var storage = multer.diskStorage({
     
      serverImageName = Date.now() + "_" + file.originalname;
      cb(null ,  serverImageName);   
-     var arr = []
-    for(i = 0; i < arr.length; i++){
-      arr.push(serverImageName)
-    }
+    
   }
 });
 
@@ -132,38 +120,48 @@ const upload = multer ({
 })
 
 //storing multiple images in the assets folder
+
 app.post('/upload', upload.array('photo', 4), async (req, res) => {
-  try {
-    const reqFiles = []
-    const photo = req.files;
-for (let i =0; i < photo.length; i++ ){
-  reqFiles.push(photo[i].serverImageName)
-}
-    if (!photo) {
+   try {
+     const reqFiles = []
+     const photo = req.files;
+     for (let i =0; i < photo.length; i++ ){
+      reqFiles.push(photo[i].filename)
+      let imageref = req.query.imageref;
+      console.log(imageref)
+  let data2 = {image_name:photo[i].filename, image_ref: imageref}
+  let sql2 = "INSERT INTO images SET ?"
+  conn.query(sql2,data2, (err,res)=>{
+    if(err){
+      throw err
+    } else {
+     console.log("Image has been added to the image table")
+    }
+  })
+     }
+     if (!photo) {
       res.status(400).send({
           status: false,
           data: 'No file is selected.'
       })
     } else {
       // send response
-
+      console.log("images are uploaded to assets folder")
       res.send({
         status: true,
         message: 'File is uploaded.',
-
         data: {
           name: photo.originalname,
           mimetype: photo.mimetype,
           size: photo.size
       }
-  });
 
-      }
-
-  } catch(err){
-    res.status(500).send(err);
-
+    })
   }
+
+   } catch(err){
+     res.status(500).send(err)
+   }
 
 })
 
