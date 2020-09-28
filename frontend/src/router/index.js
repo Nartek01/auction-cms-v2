@@ -11,6 +11,8 @@ import Latestbids from '@/components/Latestbids'
 import Adduser from '@/components/Adduser'
 import Adduserv2 from '@/components/Adduserv2'
 import AddObject from '@/components/AddObject'
+import ObjectDetails from '@/components/ObjectDetails'
+
 Vue.use(Router);
 
 export default new Router({
@@ -77,7 +79,16 @@ export default new Router({
    {
     path:  '/objects/addObject',
     name: 'AddObject',
+    props: { page: 13 },
     component: AddObject,
+   
+  },
+
+  {
+    path:  '/object/:id',
+    name: 'object',
+    props: true,
+    component: ObjectDetails,
    
   },
 

@@ -12,20 +12,23 @@
         </div>
 
         <!-- Object info container-->
+
         <div class="p-2 ">
-          Name:{{name}}
+          Name:{{productName}}
           <br>Category: {{category}}
           <br>Seller: {{seller}}
           <br>Status: {{status}}
           <br>Start price:{{price}} {{currency}}
-          <br>Product id: {{productNumber}}
+          <br>Product id: {{id}}
         </div>
-
+ 
         <!-- Button container -->
         <div class="p-2">
           <div class="text-center d-flex flex-column">
+             <mdb-btn outline="secondary" @click="selectedObject()">Details</mdb-btn>
             <mdb-btn outline="secondary">Edit</mdb-btn>
             <mdb-btn outline="secondary">Delete</mdb-btn>
+           
           </div>
         </div>
       </div>
@@ -43,9 +46,26 @@ export default {
     mdbBtn,
     mdbContainer
   },
-  props: ["name","price", "image", "currency", "category", "seller", "status", "productNumber"],
+  props: ["productName","price", "image", "currency", "category", "seller", "status", "id"],
+
+
+methods: {
+  selectedObject(){
+ 
+    this.$router.push(`/object/${this.id}`  )
+
+  }
+}
+
 };
+
+
+
+
+
 </script>
 
 <style scoped>
 </style>
+
+  

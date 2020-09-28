@@ -6,6 +6,10 @@ import App from './App'
 import router from './router'
 import store from './store'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
+Vue.use(Buefy)
 
 Vue.use(VueGoogleMaps, {
   load: {

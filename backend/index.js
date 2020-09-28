@@ -51,9 +51,9 @@ server.listen(port, () => {
 //'SELECT * FROM images GROUP BY image_ref'
 
 
-//fetching objects for the object list view
+//fetching objects 
 app.get('/products', function (req, res) {
-  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref', function (error, results) {
+  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id', function (error, results) {
      
       if (error) {
         console.log(req)
@@ -64,6 +64,21 @@ app.get('/products', function (req, res) {
   });
 });
 
+app.get('/product', function (req, res) {
+  let sql = 'SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY products.id'
+ // let sql = 'SELECT * FROM products WHERE id = ?'
+   let data = req.query.id
+
+  conn.query(sql,[data], function (error, results) {
+     
+    if (error) {
+      console.log(req)
+      throw error
+    }else {
+      return res.send({ error: false, data: results, message: 'Product data has been sent' });
+    }
+});
+});
 
 
 
