@@ -46,7 +46,7 @@ export default {
     mdbBtn,
     mdbContainer
   },
-  props: ["productName","price", "image", "currency", "category", "seller", "status", "id"],
+  props: { productName: String, price: String, image: ImageData, currency: String, category: String, seller: Number, status: String, id: Number },
 
 
 methods: {
