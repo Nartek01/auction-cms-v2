@@ -10,7 +10,6 @@
             style="width: 200px"
           />
         </div>
-
         <!-- Object info container-->
 
         <div class="p-2 ">
@@ -27,7 +26,7 @@
           <div class="text-center d-flex flex-column">
              <mdb-btn outline="secondary" @click="selectedObject()">Details</mdb-btn>
             <mdb-btn outline="secondary">Edit</mdb-btn>
-            <mdb-btn outline="secondary">Delete</mdb-btn>
+            <mdb-btn outline="secondary" @click="showModal">Delete</mdb-btn>
            
           </div>
         </div>
@@ -38,6 +37,7 @@
 </template>
 
 <script>
+import Modal from '@/components/Modal'
 import { mdbBtn, mdbContainer } from "mdbvue";
 export default {
   name: "Objects",
@@ -55,6 +55,21 @@ methods: {
     this.$router.push(`/${this.id}`  )
 
   },
+
+   showModal(){
+      this.$buefy.modal.open({
+        parent:this,
+        component: Modal,
+        props: {
+          itemName: this.productName,
+          itemId: this.id
+        },
+
+        hasModalCard: true,
+        trapFocus: true,
+
+      })
+    },
 
 }
 

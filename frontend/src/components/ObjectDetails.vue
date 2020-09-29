@@ -1,6 +1,7 @@
 <template>
   <div>
 
+
   <ul class="scroll-container" data-layoutmethod="flexbox">
     <li class="scroll-item"><img src="../assets/Budda1.jpg" /></li>
     <li class="scroll-item"><img src="../assets/Budda2.jpg" /></li>
@@ -47,14 +48,6 @@ export default {
      imageArray: Array
      }
  },
-
-methods: {
-  filteringImages(prodData){
-
-return prodData
-
-  }
-}
   
 };
 </script>

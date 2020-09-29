@@ -52,7 +52,7 @@ server.listen(port, () => {
 
 //fetching objects 
 app.get('/products', function (req, res) {
-  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id', function (error, results) {
+  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id ', function (error, results) {
      
       if (error) {
         console.log(req)
@@ -64,7 +64,7 @@ app.get('/products', function (req, res) {
 });
 
 app.get('/product', function (req, res) {
-  let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY products.id'
+  let sql = 'SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id ' 
 
    let data = req.query.id
 
@@ -79,21 +79,21 @@ app.get('/product', function (req, res) {
 });
 });
 
-//deleting
-app.get('/product/id', function (req, res) {
-  let sql = 'DELETE from products JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
-   let data = req.params.id
+// //deleting
+// app.get('/products/', function (req, res) {
+//   let sql = 'DELETE from products WHERE products.id = ?'
+//    let data = req.query.id
 
-  conn.query(sql,data, function (error, results) {
+//   conn.query(sql,data, function (error, results) {
      
-    if (error) {
-      console.log(req)
-      throw error
-    }else {
-      return res.send({ data: results });
-    }
-});
-});
+//     if (error) {
+//       console.log(req)
+//       throw error
+//     }else {
+//       return res.send({ data: results });
+//     }
+// });
+// });
 
 
 //adding products to the database
