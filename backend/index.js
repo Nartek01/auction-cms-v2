@@ -64,8 +64,8 @@ app.get('/products', function (req, res) {
 });
 
 app.get('/product', function (req, res) {
-  let sql = 'SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY images.image_ref'
- // let sql = 'SELECT * FROM products WHERE id = ?'
+  let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY products.id'
+
    let data = req.query.id
 
   conn.query(sql,[data], function (error, results) {
