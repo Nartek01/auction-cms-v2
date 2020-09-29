@@ -12,14 +12,14 @@
         <strong>{{ value.product_name }}</strong>
       </h1>
       <div>
-        Description <br />
+       <strong> Description</strong> <br />
         {{ value.description }}<br /><br />
-        Category: {{ value.category }} <br />
-        Seller: {{ value.personal_number }}<br />
-        Start price: {{ value.start_price }} {{ value.currency }}<br />
-        Reserve price: {{ value.reserve_price }} {{ value.currency }}<br />
-        Status: {{ value.product_status }}<br />
-        Date added: {{ value.date_added }}
+       <strong> Category: </strong>{{ value.category }} <br />
+       <strong> Seller:</strong> {{ value.personal_number }}<br />
+        <strong>Start price:</strong> {{ value.start_price }} {{ value.currency }}<br />
+       <strong> Reserve price:</strong> {{ value.reserve_price }} {{ value.currency }}<br />
+       <strong> Status:</strong> {{ value.product_status }}<br />
+       <strong> Date added:</strong> {{ value.date_added }}
       </div>
     </section>
   </div>
