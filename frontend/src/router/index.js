@@ -85,7 +85,7 @@ export default new Router({
   },
 
   {
-    path:  '/object/:id',
+    path:  '/:id',
     name: 'object',
     props: true,
     component: DetailedV,

@@ -38,7 +38,6 @@
 </template>
 
 <script>
-
 import { mdbBtn, mdbContainer } from "mdbvue";
 export default {
   name: "Objects",
@@ -46,15 +45,17 @@ export default {
     mdbBtn,
     mdbContainer
   },
-  props: { productName: String, price: String, image: ImageData, currency: String, category: String, seller: Number, status: String, id: Number },
+  
+  props: ["productName", "price", "image", "currency", "category", "seller", "status", "id" ],
 
 
 methods: {
   selectedObject(){
  
-    this.$router.push(`/object/${this.id}`  )
+    this.$router.push(`/${this.id}`  )
 
-  }
+  },
+
 }
 
 };
