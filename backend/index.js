@@ -10,8 +10,8 @@ const path = require('path')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'monika',
-  password:'0000',
+  user: 'nara',
+  password:'root',
   database: 'auctiondb',
 })
 
@@ -55,6 +55,7 @@ server.listen(port, () => {
 //fetching objects 
 app.get('/products', function (req, res) {
   conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id', function (error, results) {
+    //GROUP BY products.id
      
       if (error) {
         console.log(req)

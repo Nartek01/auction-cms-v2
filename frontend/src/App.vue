@@ -1,12 +1,12 @@
 <template>
-  <div class="flexible-content">
+  <div id ="_mdb-navbar" class="flexible-content">
     <!--Navbar-->
     <mdb-navbar class="flexible-navbar" light position="top" scrolling>
-      <mdb-navbar-brand
-        >Broccoli Engineering AB</mdb-navbar-brand>
+      <mdb-navbar-brand>Broccoli Engineering AB</mdb-navbar-brand>
       <mdb-navbar-toggler>
-        <mdb-navbar-nav left>
-          <mdb-nav-item>You are logged in as Auction Site Owner</mdb-nav-item>
+        <mdb-navbar-nav right>
+          <!-- <mdb-nav-item>Du är inloggad som administratör</mdb-nav-item> -->
+          <p>Du är inloggad som administratör</p>
         </mdb-navbar-nav>
         
       </mdb-navbar-toggler>
@@ -19,16 +19,14 @@
         <!-- <img alt="" class="img-fluid" src="./assets/logo-mdb-vue-small.png"> -->
         </a>
       <mdb-list-group class="list-group-flush ">
-        <router-link to="/dashboard" @click.native="activeItem = 1">
+        <!-- <router-link to="/dashboard" @click.native="activeItem = 1"> -->
           <mdb-list-group-item
-            :action="true"
-            :class="activeItem === 1 && 'active'"
             ><mdb-icon
               icon="chart-pie"
               class="mr-3"
             />Admin Dashboard</mdb-list-group-item
           >
-        </router-link>
+        <!-- </router-link> -->
          <router-link class="mt-3" to="/notifications" @click.native="activeItem = 10">
           <mdb-list-group-item
             :action="true"
@@ -96,7 +94,7 @@
 import {
   mdbNavbar,
   mdbNavbarBrand,
-  mdbNavItem,
+  // mdbNavItem,
   mdbNavbarNav,
   mdbNavbarToggler,
  
@@ -112,7 +110,7 @@ export default {
   components: {
     mdbNavbar,
     mdbNavbarBrand,
-    mdbNavItem,
+    // mdbNavItem,
     mdbNavbarNav,
     mdbNavbarToggler,
     // mdbBtn,
@@ -134,6 +132,9 @@ export default {
 </script>
 
 <style>
+* {
+  box-shadow: none !important;
+}
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
 .navbar-light .navbar-brand {
   margin-left: 15px;
@@ -162,9 +163,9 @@ main {
   top: 0;
   height: 100vh;
   width: 270px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  /* box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); */
   z-index: 1050;
-  background-color: #2E2E2E;
+  background-color: #EDEDEE;
   /* background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
   padding: 1.5rem;
   padding-top: 0;
@@ -195,4 +196,17 @@ main {
     padding-left: 10px;
   }
 }
+/* Navbar background and light gray-line */
+div {
+  background-color: #ededee;
+}
+.flexible-navbar {
+  border-bottom: 2px solid rgba(0,0,0,0.1) !important;
+  background-color: #ededee;
+}
+
+mdb-navbar-brand {
+  display: flex;
+}
+
 </style>
