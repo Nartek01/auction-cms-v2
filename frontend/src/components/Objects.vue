@@ -25,14 +25,9 @@
  
         <!-- Button container -->
         <div class="box-3 ml-3">
-          <!-- <div class="text-center d-flex flex-column"> -->
              <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Details</mdb-btn>
              <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Edit</mdb-btn>
              <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Delete</mdb-btn>
-            <!-- <mdb-btn outline="secondary">Edit</mdb-btn> -->
-            <!-- <mdb-btn outline="secondary">Delete</mdb-btn> -->
-           
-          <!-- </div> -->
         </div>
       </div>
     </mdb-container>
@@ -74,11 +69,6 @@ methods: {
   border-top: 2px gray solid;
   padding: 10px;
 }
-
-/* .container-1 div {
-  border: 1px red solid;
-  padding: 10px;
-} */
 
 .box-1 {
   flex-grow:1 1 0px;
