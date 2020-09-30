@@ -4,7 +4,7 @@
 
 <div v-for="(image, index) in imageArray" :key="index">
  
- <img :src=image   />
+{{image}}
 </div>
 
 
@@ -51,8 +51,8 @@ export default {
  },
 
  methods: {
-   filterImage(){
-     for(var {image_name: name} of this.prodData )
+   filterImage(prodData){
+     for(var {image_name: name} of prodData )
      { this.imageArray.push(name) }
    }
  
