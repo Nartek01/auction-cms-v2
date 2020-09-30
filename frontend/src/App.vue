@@ -1,7 +1,7 @@
 <template>
   <div class="flexible-content">
     <!--Navbar-->
-    <mdb-navbar class="flexible-navbar white" light position="top" scrolling>
+    <mdb-navbar class="flexible-navbar" light position="top" scrolling>
       <mdb-navbar-brand
         >Broccoli Engineering AB</mdb-navbar-brand>
       <mdb-navbar-toggler>
@@ -18,7 +18,7 @@
         <div class="m-3"></div>
         <!-- <img alt="" class="img-fluid" src="./assets/logo-mdb-vue-small.png"> -->
         </a>
-      <mdb-list-group class="list-group-flush">
+      <mdb-list-group class="list-group-flush ">
         <router-link to="/dashboard" @click.native="activeItem = 1">
           <mdb-list-group-item
             :action="true"
@@ -29,7 +29,7 @@
             />Admin Dashboard</mdb-list-group-item
           >
         </router-link>
-         <router-link to="/notifications" @click.native="activeItem = 10">
+         <router-link class="mt-3" to="/notifications" @click.native="activeItem = 10">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 10 && 'active'"
@@ -37,7 +37,7 @@
           >
         </router-link>
       
-        <router-link to="/objects" @click.native="activeItem = 3">
+        <router-link class="mt-3" to="/objects" @click.native="activeItem = 3">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 3 && 'active'"
@@ -45,35 +45,35 @@
           >
         </router-link>
 
-        <router-link to="/auctions" @click.native="activeItem = 6">
+        <router-link class="mt-3" to="/auctions" @click.native="activeItem = 6">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 6 && 'active'"
             ><mdb-icon icon="shopping-bag" class="mr-3" />Auctions</mdb-list-group-item
           >
         </router-link>
-        <router-link to="/latestbids" @click.native="activeItem = 11">
+        <router-link class="mt-3" to="/latestbids" @click.native="activeItem = 11">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 11 && 'active'"
             ><mdb-icon icon="gavel" class="mr-3" />Latest bids</mdb-list-group-item
           >
         </router-link>
-        <router-link to="/invoices" @click.native="activeItem = 7">
+        <router-link class="mt-3" to="/invoices" @click.native="activeItem = 7">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 7 && 'active'"
             ><mdb-icon icon="file-invoice-dollar" class="mr-3" />Invoices</mdb-list-group-item
           >
         </router-link>
-        <router-link to="/managements" @click.native="activeItem = 9">
+        <router-link class="mt-3" to="/managements" @click.native="activeItem = 9">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 9 && 'active'"
             ><mdb-icon icon="users" class="mr-3" />Managements</mdb-list-group-item
           >
         </router-link>
-        <router-link to="/adduser" @click.native="activeItem = 12">
+        <router-link class="mt-3" to="/adduser" @click.native="activeItem = 12">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 12 && 'active'"
@@ -164,11 +164,11 @@ main {
   width: 270px;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
   z-index: 1050;
-  background-color: #fff;
+  background-color: #2E2E2E;
+  /* background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%); */
   padding: 1.5rem;
   padding-top: 0;
 }
-
 .sidebar-fixed .logo-wrapper img {
   width: 100%;
   padding: 2.5rem;

@@ -1,13 +1,20 @@
 <template>
   <div>
-    <h1>Objects list</h1> 
-    <br>
     <div>
-      <router-link to="/objects/addObject">
-        <mdb-btn outline="secondary">Add</mdb-btn>
+    <!-- <h1>Objects list</h1>  -->
+    <br>
+    <!-- Button container -->
+    <div class="container">
+      <div>
+      <input class="searchBar" placeholder="Search" />
+      </div>
+        <!-- <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Filter</mdb-btn> -->
+      <router-link class="_button" to="/objects/addObject">
+        <mdb-btn color="primary">Add</mdb-btn>
       </router-link>
     </div>
-
+    <!-- Button container -->
+      </div>
     <objects
       v-for="(product,index) in products"
       :key="index"
@@ -58,4 +65,20 @@ export default {
 
 
 <style scoped>
+.container {
+  display: flex;
+}
+
+.container, div {
+  width: 100%;
+  padding-bottom: 10px;
+}
+
+.container, router-link {
+  justify-content: flex-end;
+}
+
+.searchBar {
+  width: 50vw;
+}
 </style>

@@ -16,6 +16,27 @@
 CREATE DATABASE IF NOT EXISTS `auctiondb` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
 USE `auctiondb`;
 
+-- Dumping structure for table auctiondb.images
+CREATE TABLE IF NOT EXISTS `images` (
+  `image_name` varchar(50) NOT NULL,
+  `image_ref` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`image_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Dumping data for table auctiondb.images: ~7 rows (approximately)
+/*!40000 ALTER TABLE `images` DISABLE KEYS */;
+INSERT INTO `images` (`image_name`, `image_ref`) VALUES
+	('1601245293459_test2.jpg', '515500202205'),
+	('1601245293494_test3.jpg', '515500202205'),
+	('1601245293526_test4.jpg', '515500202205'),
+	('1601246806727_test.jpg', '1537017577071'),
+	('1601246806734_test2.jpg', '1537017577071'),
+	('1601246806762_test3.jpg', '1537017577071'),
+	('1601246806806_test4.jpg', '1537017577071'),
+	('1601280832191_test.jpg', '1592417012771'),
+	('1601280832202_test2.jpg', '1592417012771');
+/*!40000 ALTER TABLE `images` ENABLE KEYS */;
+
 -- Dumping structure for table auctiondb.products
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,24 +49,17 @@ CREATE TABLE IF NOT EXISTS `products` (
   `reserve_price` int(11) NOT NULL,
   `end_price` int(11) DEFAULT NULL,
   `currency` varchar(30) DEFAULT NULL,
-  `image` varchar(50) DEFAULT NULL,
   `date_added` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `personal_number` (`personal_number`),
-  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`personal_number`) REFERENCES `users` (`personal_number`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+  `image_ref` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.products: ~8 rows (approximately)
+-- Dumping data for table auctiondb.products: ~2 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` (`id`, `product_name`, `description`, `category`, `product_status`, `personal_number`, `start_price`, `reserve_price`, `end_price`, `currency`, `image`, `date_added`) VALUES
-	(1, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
-	(2, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
-	(3, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
-	(4, 'a', 'a', 'a', 'a', 7903095903, 1, 1, NULL, 'w', NULL, 'd'),
-	(7, 'Victorian lamp', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Interiors', 'In auction', NULL, 1999, 1999, NULL, 'SEK', 'img.jpg', '2020-09-15 01:26:26'),
-	(8, 'Earrings', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Jewelery', 'In auction', NULL, 3999, 4500, NULL, 'SEK', 'img.jpg', '2020-09-15 01:26:59'),
-	(9, 'Chair', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Ineriors', 'In auction', NULL, 399, 450, NULL, 'SEK', 'img.jpg', '2020-09-15 01:27:36'),
-	(10, 'Pocket watch', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.Duis aute irure dolor in reprehenderit in voluptate velit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Ineriors', 'In auction', NULL, 2000, 2450, NULL, 'SEK', 'img.jpg', '2020-09-15 01:28:04');
+INSERT INTO `products` (`id`, `product_name`, `description`, `category`, `product_status`, `personal_number`, `start_price`, `reserve_price`, `end_price`, `currency`, `date_added`, `image_ref`) VALUES
+	(49, 'Vase', 'An old vase', 'Interiors', 'New', 7903095903, 1000, 1000, NULL, 'SEK', '2020-09-28 00:21:35.534', '515500202205'),
+	(50, 'Table', 'table', 'Furniture', 'New', 7903095903, 1000, 1000, NULL, 'SEK', '2020-09-28 00:46:48.205', '1537017577071'),
+	(51, 'Test', 'test', 'test', 'New', 7903095903, 1000, 1000, NULL, 'sek', '2020-09-28 10:13:53.576', '1592417012771');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table auctiondb.users
