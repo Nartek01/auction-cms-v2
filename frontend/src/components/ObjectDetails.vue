@@ -1,14 +1,15 @@
 <template>
   <div>
+{{prodData}}
+
+<div v-for="(image, index) in imageArray" :key="index">
+ 
+ <img :src=image   />
+</div>
 
 
-  <ul class="scroll-container" data-layoutmethod="flexbox">
-    <li class="scroll-item"><img src="../assets/Budda1.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/Budda2.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/budda3.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/Budda4.jpg" /></li>
-  </ul>
-  
+
+
     <section v-for="(value, index) in prodData" :key="index">
       <!-- <img 
             :src="value.image_name"
@@ -48,65 +49,19 @@ export default {
      imageArray: Array
      }
  },
+
+ methods: {
+   filterImage(){
+     for(var {image_name: name} of this.prodData )
+     { this.imageArray.push(name) }
+   }
+ 
+ }
   
 };
 </script>
 
 <style scoped>
 
-/* limit width so that content will need to scroll */
-main {
-  max-width: 30em;
-}
-
-/* SCROLL SNAPPING */
-.scroll-container {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-}
-.scroll-item {
-  scroll-snap-align: center;
-}
-
-
-/* FLEXBOX LAYOUT */
-.scroll-container[data-layoutmethod="flexbox"] {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center; /* vertically align children */
-}
-.scroll-container[data-layoutmethod="flexbox"] .scroll-item {
-  margin-right: 1em; /* fake gap */
-  flex: 0 0 auto;
-}
-
-/* center main element */
-main {
-  margin: 0 auto;
-  padding: 0 1em;
-  border: 1px solid rgba(0,0,0,0.1);
-}
-
-/* remove list styles */
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.scroll-item {
-  /* make it square */
-  width: 16em;
-  height: 18em;
-  border: 2px solid rgba(0,0,0, 0.1);
-
-  /* some basic styling */
-  border-radius: 0.3em;
-
-  /* center contents */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 </style>
