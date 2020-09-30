@@ -109,6 +109,7 @@ ul {
 
   /* some basic styling */
   border-radius: 0.3em;
+  background-color: white;
 
   /* center contents */
   display: flex;
