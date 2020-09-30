@@ -76,10 +76,11 @@ methods: {
 }
 
 .box-1 img {
-  height: inherit;
-  width: 122px;
+  height: 184px;
+  width: 200px;
   padding: 0px;
 }
+
 .box-2 {
   flex: 3;
   order: 2;
