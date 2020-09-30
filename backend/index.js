@@ -48,7 +48,6 @@ server.listen(port, () => {
   console.log(`Server is listening on port: ${port}`)
 })
 
-//'SELECT * FROM images GROUP BY image_ref'
 
 
 //fetching objects 
@@ -66,8 +65,8 @@ app.get('/products', function (req, res) {
 });
 
 app.get('/product', function (req, res) {
-  let sql = 'SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY images.image_ref'
- // let sql = 'SELECT * FROM products WHERE id = ?'
+  let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY products.id'
+
    let data = req.query.id
 
   conn.query(sql,[data], function (error, results) {
@@ -81,8 +80,24 @@ app.get('/product', function (req, res) {
 });
 });
 
+//deleting
+app.get('/product/id', function (req, res) {
+  let sql = 'DELETE from products JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
+   let data = req.params.id
+
+  conn.query(sql,data, function (error, results) {
+     
+    if (error) {
+      console.log(req)
+      throw error
+    }else {
+      return res.send({ data: results });
+    }
+});
+});
 
 
+//adding products to the database
 app.post('/products',(req, res) => {
 
   console.log(req.body.image)
