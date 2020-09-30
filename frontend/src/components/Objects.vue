@@ -53,17 +53,11 @@ export default {
 
 methods: {
   selectedObject(){
-<<<<<<< HEAD
-    //Where to navigate when button is pushed
-    this.$router.push(`/object/${this.id}`  )
-  }
-=======
  
     this.$router.push(`/${this.id}`  )
 
   },
 
->>>>>>> images
 }
 
 };
@@ -98,7 +92,7 @@ methods: {
 }
 
 img {
-  height: 16vh;
-  width: 25vw;
+  height: 20vh;
+  width: 30vw;
 }
 </style>

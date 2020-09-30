@@ -1,3 +1,5 @@
+
+
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql');
@@ -8,8 +10,8 @@ const path = require('path')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'nara',
-  password:'root',
+  user: 'monika',
+  password:'0000',
   database: 'auctiondb',
 })
 
@@ -52,8 +54,7 @@ server.listen(port, () => {
 
 //fetching objects 
 app.get('/products', function (req, res) {
-  //Removed "GROUP BY products.id"
-  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref', function (error, results) {
+  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id', function (error, results) {
      
       if (error) {
         console.log(req)
@@ -81,7 +82,7 @@ app.get('/product', function (req, res) {
 });
 
 //deleting
-app.get('/product/id', function (req, res) {
+app.get('/products', function (req, res) {
   let sql = 'DELETE from products JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
    let data = req.params.id
 

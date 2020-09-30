@@ -23,18 +23,14 @@ CREATE TABLE IF NOT EXISTS `images` (
   PRIMARY KEY (`image_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.images: ~7 rows (approximately)
+-- Dumping data for table auctiondb.images: ~4 rows (approximately)
 /*!40000 ALTER TABLE `images` DISABLE KEYS */;
 INSERT INTO `images` (`image_name`, `image_ref`) VALUES
-	('1601245293459_test2.jpg', '515500202205'),
-	('1601245293494_test3.jpg', '515500202205'),
-	('1601245293526_test4.jpg', '515500202205'),
-	('1601246806727_test.jpg', '1537017577071'),
-	('1601246806734_test2.jpg', '1537017577071'),
-	('1601246806762_test3.jpg', '1537017577071'),
-	('1601246806806_test4.jpg', '1537017577071'),
-	('1601280832191_test.jpg', '1592417012771'),
-	('1601280832202_test2.jpg', '1592417012771');
+	('1601396421299_Budda1.jpg', '408321255889'),
+	('1601396421300_Budda2.jpg', '408321255889'),
+	('1601396421303_budda3.jpg', '408321255889'),
+	('1601396421304_Budda4.jpg', '408321255889'),
+	('1601450484715_Budda5.jpg', '1206250551');
 /*!40000 ALTER TABLE `images` ENABLE KEYS */;
 
 -- Dumping structure for table auctiondb.products
@@ -51,15 +47,16 @@ CREATE TABLE IF NOT EXISTS `products` (
   `currency` varchar(30) DEFAULT NULL,
   `date_added` varchar(50) DEFAULT NULL,
   `image_ref` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`),
+  KEY `personal_number` (`personal_number`),
+  CONSTRAINT `products_ibfk_1` FOREIGN KEY (`personal_number`) REFERENCES `users` (`personal_number`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table auctiondb.products: ~2 rows (approximately)
+-- Dumping data for table auctiondb.products: ~1 rows (approximately)
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
 INSERT INTO `products` (`id`, `product_name`, `description`, `category`, `product_status`, `personal_number`, `start_price`, `reserve_price`, `end_price`, `currency`, `date_added`, `image_ref`) VALUES
-	(49, 'Vase', 'An old vase', 'Interiors', 'New', 7903095903, 1000, 1000, NULL, 'SEK', '2020-09-28 00:21:35.534', '515500202205'),
-	(50, 'Table', 'table', 'Furniture', 'New', 7903095903, 1000, 1000, NULL, 'SEK', '2020-09-28 00:46:48.205', '1537017577071'),
-	(51, 'Test', 'test', 'test', 'New', 7903095903, 1000, 1000, NULL, 'sek', '2020-09-28 10:13:53.576', '1592417012771');
+	(54, 'A RARE GILT-BRONZE BUDDHIST FIGURE, TANG DYNASTY', 'Height 3¼ in., 8.6 cm\n\nOverall in good condition. A minor loss above the lotus and possibly another to the tip of the head. Expected wear to gilding.\n\nCompare a related Tang dynasty gilt-bronze figure of Ksitigarbha, illustrated in Matsubara Saburo, Chinese Buddhist Sculpture: A study based on bronze and stone statues other than works from cave temples, Tokyo, 1966, pl. 267 (b). See also a gilt-bronze figure of Buddha bearing a very similar treatment of drapery, formerly in the collections of A.D. Brankston, Mrs. W.H. Roberts and Dr. Ip Yee, sold twice by Sotheby\'s: first in our London room, 15th December 1981, lot 29, and then in our Hong Kong room, 19th November 1984, lot 17.', 'Antiques', 'New', 7903095903, 6000, 6000, NULL, 'SEK', '2020-09-29 18:20:22.481', '408321255889'),
+	(59, 'TEst', 'test', 't', 'New', 7903095903, 11, 1, NULL, 'sek', '2020-09-30 09:21:25.867', '1206250551');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 
 -- Dumping structure for table auctiondb.users
