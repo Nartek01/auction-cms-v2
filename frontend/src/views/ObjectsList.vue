@@ -5,13 +5,15 @@
     <br>
     <!-- Button container -->
     <div class="container">
-      <div>
-      <input class="searchBar" placeholder="Search" />
+      <div class="box-1">
+      <input class="searchBar" placeholder="Sök objekter" />
       </div>
         <!-- <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Filter</mdb-btn> -->
-      <router-link class="_button" to="/objects/addObject">
-        <mdb-btn color="primary">Add</mdb-btn>
+        <div class="box-2">
+      <router-link to="/objects/addObject">
+        <mdb-btn class="_button" color="elegant">Lägg till</mdb-btn>
       </router-link>
+      </div>
     </div>
     <!-- Button container -->
       </div>
@@ -67,18 +69,31 @@ export default {
 <style scoped>
 .container {
   display: flex;
+  padding: 10px;
+  align-items: center;
 }
 
 .container, div {
   width: 100%;
-  padding-bottom: 10px;
 }
 
-.container, router-link {
-  justify-content: flex-end;
+/*Search bar style */
+.box-1 {
+  flex: 3;
+  order: 2;
 }
 
-.searchBar {
-  width: 50vw;
+.box-1, .searchBar {
+  width: stretch;
+}
+
+/*Add button style */
+.box-2 {
+  flex: 1;
+  order: 2;
+}
+
+._button {
+ width: stretch;
 }
 </style>
