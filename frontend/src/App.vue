@@ -1,7 +1,7 @@
 <template>
   <div id ="_mdb-navbar" class="flexible-content">
     <!--Navbar-->
-    <mdb-navbar class="flexible-navbar" light position="top" scrolling>
+    <mdb-navbar class="navBar" scrolling>
       <mdb-navbar-brand>Broccoli Engineering AB</mdb-navbar-brand>
       <mdb-navbar-toggler>
         <mdb-navbar-nav right>
@@ -200,9 +200,12 @@ main {
 div {
   background-color: #ededee;
 }
-.flexible-navbar {
+
+.navBar {
   border-bottom: 2px solid rgba(0,0,0,0.1) !important;
   background-color: #ededee;
+}
+.flexible-navbar {
 }
 
 mdb-navbar-brand {
