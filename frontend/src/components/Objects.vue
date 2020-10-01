@@ -4,7 +4,7 @@
       <div class="container-1">
         <div class="box-1">
           <!-- :src="image" -->
-          <img
+          <img 
             :src="image"
             class="box"
             alt="Image unavailable"
@@ -14,20 +14,20 @@
         <!-- Object info container-->
         <div class="box-2">
           <div class="box">
-            Name:{{productName}}
-            <br>Category: {{category}}
-            <br>Seller: {{seller}}
+            Namn:{{productName}}
+            <br>Kategori: {{category}}
+            <br>Säljarens namn: {{seller}}
             <br>Status: {{status}}
-            <br>Start price:{{price}} {{currency}}
-            <br>Product id: {{id}}
+            <br>Utropspris:{{price}} {{currency}}
+            <br>Produkt ID: {{id}}
           </div>
         </div>
  
         <!-- Button container -->
-        <div class="box-3 ml-3">
-             <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Details</mdb-btn>
-             <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Edit</mdb-btn>
-             <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Delete</mdb-btn>
+        <div class="box-3">
+             <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Detaljer</mdb-btn>
+             <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Egenskaper</mdb-btn>
+             <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Radera</mdb-btn>
         </div>
       </div>
     </mdb-container>
@@ -69,29 +69,30 @@ methods: {
   border-top: 2px gray solid;
   padding: 10px;
 }
-
+/* image div styling */
 .box-1 {
   flex-grow:1 1 0px;
   order: 1;
 }
-
+/* image element styling */
 .box-1 img {
   height: 184px;
   width: 200px;
   padding: 0px;
 }
-
+/* Buttons style */
 .box-2 {
   flex: 3;
   order: 2;
   height: inherit;
   margin-left: 10px;
 }
-
+ /* description/styling */
 .box-3 {
   display: grid;
   width: 15vw;
   height: stretch;
+  margin-left: 3px;
   order: 3;
 }
 
