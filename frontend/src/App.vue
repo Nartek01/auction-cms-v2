@@ -31,7 +31,7 @@
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 10 && 'active'"
-            ><mdb-icon icon="table" class="mr-3" />Notifications</mdb-list-group-item
+            ><mdb-icon icon="table" class="mr-3" />Notifikationer</mdb-list-group-item
           >
         </router-link>
       
@@ -39,7 +39,7 @@
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 3 && 'active'"
-            ><mdb-icon icon="table" class="mr-3" />Objects</mdb-list-group-item
+            ><mdb-icon icon="table" class="mr-3" />Objekter</mdb-list-group-item
           >
         </router-link>
 
@@ -47,35 +47,35 @@
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 6 && 'active'"
-            ><mdb-icon icon="shopping-bag" class="mr-3" />Auctions</mdb-list-group-item
+            ><mdb-icon icon="shopping-bag" class="mr-3" />Auktioner</mdb-list-group-item
           >
         </router-link>
         <router-link class="mt-3" to="/latestbids" @click.native="activeItem = 11">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 11 && 'active'"
-            ><mdb-icon icon="gavel" class="mr-3" />Latest bids</mdb-list-group-item
+            ><mdb-icon icon="gavel" class="mr-3" />Senaste bud</mdb-list-group-item
           >
         </router-link>
         <router-link class="mt-3" to="/invoices" @click.native="activeItem = 7">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 7 && 'active'"
-            ><mdb-icon icon="file-invoice-dollar" class="mr-3" />Invoices</mdb-list-group-item
+            ><mdb-icon icon="file-invoice-dollar" class="mr-3" />Fakturering</mdb-list-group-item
           >
         </router-link>
         <router-link class="mt-3" to="/managements" @click.native="activeItem = 9">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 9 && 'active'"
-            ><mdb-icon icon="users" class="mr-3" />Managements</mdb-list-group-item
+            ><mdb-icon icon="users" class="mr-3" />Användar Hantering</mdb-list-group-item
           >
         </router-link>
         <router-link class="mt-3" to="/adduser" @click.native="activeItem = 12">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 12 && 'active'"
-            ><mdb-icon icon="users" class="mr-3" />Add User</mdb-list-group-item
+            ><mdb-icon icon="users" class="mr-3" />Lägg till användare</mdb-list-group-item
           >
         </router-link>
       </mdb-list-group>
