@@ -69,16 +69,16 @@ export default new Router({
     },
   
     {
-      path: '/objects',
-      name: 'Objects',
+      path: '/products',
+      name: 'Products',
       props: { page: 3 },
       component: ObjectsList,
    
    },
 
    {
-    path:  '/objects/addObject',
-    name: 'AddObject',
+    path:  '/products/addProduct',
+    name: 'AddProduct',
     props: { page: 13 },
     component: AddObject,
    
@@ -86,7 +86,7 @@ export default new Router({
 
   {
     path:  '/:id',
-    name: 'object',
+    name: 'product',
     props: true,
     component: DetailedV,
    

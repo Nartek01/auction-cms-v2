@@ -3,7 +3,7 @@
     <h1>Objects list</h1> 
     <br>
     <div>
-      <router-link to="/objects/addObject">
+      <router-link to="/products/addProduct">
         <mdb-btn outline="secondary">Add</mdb-btn>
       </router-link>
     </div>
@@ -39,6 +39,12 @@ export default {
     return {
       products: [],
     };
+
+  
+  },
+
+  props: {
+    product: this.product
   },
   mounted() {
     this.fetchData();

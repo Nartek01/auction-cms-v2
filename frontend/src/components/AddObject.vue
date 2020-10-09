@@ -159,7 +159,7 @@ export default {
 
         const data = await response.json();
         if (data.status == "200") {
-          await this.$router.push({ path: "/objects" });
+          await this.$router.push({ path: "/products" });
         } else {
           alert("Something went wrong!");
         }

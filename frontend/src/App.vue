@@ -37,7 +37,7 @@
           >
         </router-link>
       
-        <router-link to="/objects" @click.native="activeItem = 3">
+        <router-link to="/products" @click.native="activeItem = 3">
           <mdb-list-group-item
             :action="true"
             :class="activeItem === 3 && 'active'"
