@@ -28,6 +28,7 @@
       :seller="product.personal_number"
       :status="product.product_status"
       :id="product.id"
+      :imageRef="product.image_ref"
     ></objects>
   </div>
 </template>

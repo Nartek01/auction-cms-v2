@@ -10,8 +10,8 @@ const path = require('path')
 
 const conn = mysql.createConnection({
   host: 'localhost',
-  user: 'nara',
-  password:'root',
+  user: 'monika',
+  password:'0000',
   database: 'auctiondb',
 })
 
@@ -54,8 +54,8 @@ server.listen(port, () => {
 
 //fetching objects 
 app.get('/products', function (req, res) {
-  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref', function (error, results) {
-    //GROUP BY products.id
+  conn.query('SELECT * FROM images INNER JOIN products ON products.image_ref = images.image_ref GROUP BY products.id', function (error, results) {
+   
      
       if (error) {
         console.log(req)
@@ -72,22 +72,6 @@ app.get('/product', function (req, res) {
    let data = req.query.id
 
   conn.query(sql,[data], function (error, results) {
-     
-    if (error) {
-      console.log(req)
-      throw error
-    }else {
-      return res.send({ data: results });
-    }
-});
-});
-
-//deleting
-app.get('/products', function (req, res) {
-  let sql = 'DELETE from products JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
-   let data = req.params.id
-
-  conn.query(sql,data, function (error, results) {
      
     if (error) {
       console.log(req)
@@ -207,3 +191,28 @@ app.use(function(err,req,res,next){
     return
   }
 })
+
+//DELETING
+
+app.delete('/products', function (req, res) {
+  let sql = 'DELETE FROM products, images USING products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.image_ref = ?'
+  let data = req.body.image_ref
+  conn.query(sql, [data], (err, res) =>{
+    if (err) {
+      throw err;
+  } 
+  })
+
+     })
+
+//Deletign with endpoint - works in Postman
+// app.delete('/products/:image_ref', function (req, res) {
+//   let sql = 'DELETE FROM products, images USING products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.image_ref = ?'
+//   let data = req.params.image_ref
+//   conn.query(sql, [data], (err, res) =>{
+//     if (err) {
+//       throw err;
+//   } 
+//   })
+
+//      })

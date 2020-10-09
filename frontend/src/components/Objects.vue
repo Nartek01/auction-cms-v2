@@ -27,7 +27,7 @@
         <div class="box-3 ml-3">
              <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Details</mdb-btn>
              <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Edit</mdb-btn>
-             <mdb-btn color="elegant" rounded><i class="fas fa-trash"></i> Delete</mdb-btn>
+             <mdb-btn color="elegant" @click="showModal">Delete</mdb-btn>
         </div>
       </div>
     </mdb-container>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Modal from '@/components/Modal'
 import { mdbBtn, mdbContainer } from "mdbvue";
 export default {
   name: "Objects",
@@ -44,7 +45,7 @@ export default {
     mdbContainer
   },
   
-  props: ["productName", "price", "image", "currency", "category", "seller", "status", "id" ],
+  props: ["productName", "price", "image", "currency", "category", "seller", "status", "id", "imageRef"],
 
 
 methods: {
@@ -53,6 +54,23 @@ methods: {
     this.$router.push(`/${this.id}`  )
 
   },
+
+   showModal(){
+      this.$buefy.modal.open({
+        parent:this,
+        component: Modal,
+        props: {
+          itemName: this.productName,
+          itemId: this.id,
+          imageRef: this.imageRef
+       
+        },
+
+        hasModalCard: true,
+        trapFocus: true,
+
+      })
+    },
 
 }
 
