@@ -79,21 +79,7 @@ app.get('/product', function (req, res) {
 });
 });
 
-// //deleting
-// app.get('/products/', function (req, res) {
-//   let sql = 'DELETE from products WHERE products.id = ?'
-//    let data = req.query.id
 
-//   conn.query(sql,data, function (error, results) {
-     
-//     if (error) {
-//       console.log(req)
-//       throw error
-//     }else {
-//       return res.send({ data: results });
-//     }
-// });
-// });
 
 
 //adding products to the database
@@ -204,3 +190,16 @@ app.use(function(err,req,res,next){
     return
   }
 })
+
+//DELETING
+
+app.get('/products', function (req, res) {
+  let sql = 'DELETE FROM products, images USING products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
+  let data = req.body.id
+  conn.query(sql, [data], (err, res) =>{
+    if (err) {
+      throw err;
+  } 
+  })
+
+     })
