@@ -16,8 +16,8 @@
     <!-- Button container -->
       </div>
     <objects
-      v-for="(product,index) in products"
-      :key="index"
+      v-for="product in products"
+      :key="product.id"
       :productName="product.product_name"
       :description="product.description"
       :category="product.category"
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import {bus} from '@/main.js'
 import Objects from "@/components/Objects";
 import { mdbBtn } from "mdbvue"
 export default {
@@ -41,15 +42,25 @@ export default {
   components: {
     objects: Objects,
   
+  
     mdbBtn,
   },
   data() {
     return {
       products: [],
+     
     };
   },
   mounted() {
     this.fetchData();
+
+  },
+
+//listening to the events from Modal component
+  created(){
+    bus.$on('referesh', (data) =>{
+      this.products = data
+    } )
   },
 
   methods: {
@@ -58,6 +69,14 @@ export default {
       const res = await val.json();
       this.products = res.data;
     },
+
+   provide(){
+     return {
+       inject: ['eventBus']
+     }
+   },
+
+   
 
   },
 };

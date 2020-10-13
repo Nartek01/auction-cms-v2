@@ -2,20 +2,14 @@
   <div>
 
   <ul class="scroll-container" data-layoutmethod="flexbox">
-    <li class="scroll-item"><img src="../assets/Budda1.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/Budda2.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/budda3.jpg" /></li>
-    <li class="scroll-item"><img src="../assets/Budda4.jpg" /></li>
-  </ul>
-  
+      <section v-for="(value, index) in prodData" :key="index">
+        <li class="scroll-item"><img :src="value.image_name" /></li>
+      </section>      
+    </ul>
+    <br>
     <section v-for="(value, index) in prodData" :key="index">
-      <!-- <img 
-            :src="value.image_name"
-            class="img-fluid z-depth-1"
-            alt="Image unavailable"
-            style="width: 200px"
-          /> -->
- <br>
+      <span v-if="index == 0">
+
       <h1 class="h5">
         <strong>{{ value.product_name }}</strong>
       </h1>
@@ -29,6 +23,7 @@
        <strong> Status:</strong> {{ value.product_status }}<br />
        <strong> Date added:</strong>  {{ value.date_added }}
       </div>
+      </span>
     </section>
   </div>
 </template>
@@ -47,14 +42,6 @@ export default {
      imageArray: Array
      }
  },
-
-methods: {
-  filteringImages(prodData){
-
-return prodData
-
-  }
-}
   
 };
 </script>

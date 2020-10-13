@@ -67,7 +67,7 @@ app.get('/products', function (req, res) {
 });
 
 app.get('/product', function (req, res) {
-  let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ? GROUP BY products.id'
+  let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
 
    let data = req.query.id
 
@@ -205,14 +205,3 @@ app.delete('/products', function (req, res) {
 
      })
 
-//Deletign with endpoint - works in Postman
-// app.delete('/products/:image_ref', function (req, res) {
-//   let sql = 'DELETE FROM products, images USING products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.image_ref = ?'
-//   let data = req.params.image_ref
-//   conn.query(sql, [data], (err, res) =>{
-//     if (err) {
-//       throw err;
-//   } 
-//   })
-
-//      })
