@@ -21,6 +21,7 @@
        <strong> Reserve price:</strong> {{ value.reserve_price }} {{ value.currency }}<br />
        <strong> Status:</strong> {{ value.product_status }}<br />
        <strong> Date added:</strong>  {{ value.date_added }}
+      
       </div>
       </span>
     </section>

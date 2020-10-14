@@ -84,11 +84,11 @@ app.get('/product', function (req, res) {
 
 //editing products
 app.put('/products', function(req,res) {
-  let sql = 'UPDATE products SET product_name = ?, description = ?, category = ?, personal_number = ?, start_price = ?, reserve_ price = ?, currency = ?, WHERE product.id = ?'
+  let sql = 'UPDATE products SET product_name = ?, description = ?, category = ?, personal_number = ?, start_price = ?, reserve_ price = ?, currency = ?, WHERE id = ?'
   let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,personal_number: req.body.personal_number, 
   start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency}
   let id = req.body.id
-  conn.query(sql,data, id, function (error, results) {
+  conn.query(sql,data, [id], function (error, results) {
      
     if (error) {
       console.log(req)
