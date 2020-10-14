@@ -7,7 +7,7 @@
     <section class="modal-card-body">
       <div>Are you sure you want to delete this object?</div>
       <br />
-      {{ itemName }} {{ imageRef }} {{ itemId }}
+      {{ itemName }} <br> Item id: {{ itemId }}
       <br />
       <span></span>
     </section>

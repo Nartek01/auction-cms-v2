@@ -1,6 +1,5 @@
 <template>
   <div>
-
   <ul class="scroll-container" data-layoutmethod="flexbox">
       <section v-for="(value, index) in prodData" :key="index">
         <li class="scroll-item"><img :src="value.image_name" /></li>
@@ -36,12 +35,6 @@ export default {
     prodData: Array,
     
   },
-
- data(){
-   return {
-     imageArray: Array
-     }
- },
   
 };
 </script>

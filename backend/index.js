@@ -66,9 +66,9 @@ app.get('/products', function (req, res) {
   });
 });
 
+//fetching one object based on its id
 app.get('/product', function (req, res) {
   let sql = 'SELECT * FROM products INNER JOIN images ON products.image_ref = images.image_ref WHERE products.id = ?'
-
    let data = req.query.id
 
   conn.query(sql,[data], function (error, results) {
@@ -77,10 +77,27 @@ app.get('/product', function (req, res) {
       console.log(req)
       throw error
     }else {
-      return res.send({ data: results });
+      return res.send({ data: results })
     }
 });
 });
+
+//editing products
+app.put('/products', function(req,res) {
+  let sql = 'UPDATE products SET product_name = ?, description = ?, category = ?, personal_number = ?, start_price = ?, reserve_ price = ?, currency = ?, WHERE product.id = ?'
+  let data = {product_name: req.body.product_name, description: req.body.description, category: req.body.category,personal_number: req.body.personal_number, 
+  start_price: req.body.start_price, reserve_price: req.body.reserve_price, currency: req.body.currency}
+  let id = req.body.id
+  conn.query(sql,data, id, function (error, results) {
+     
+    if (error) {
+      console.log(req)
+      throw error
+    }else {
+      return res.send({ data: results })
+    }
+});
+})
 
 
 //adding products to the database
@@ -103,9 +120,7 @@ app.post('/products',(req, res) => {
   });
 });
 
-//upload images code below
-
-
+//upload images code
 var storage = multer.diskStorage({   
 
   destination: function(req, file, cb) { 

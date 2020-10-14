@@ -12,6 +12,8 @@ import Adduser from '@/components/Adduser'
 import Adduserv2 from '@/components/Adduserv2'
 import AddObject from '@/components/AddObject'
 import DetailedV from '@/views/DetailedV'
+import EditObject from '@/views/EditObject'
+
 
 Vue.use(Router);
 
@@ -89,6 +91,14 @@ export default new Router({
     name: 'object',
     props: true,
     component: DetailedV,
+   
+  },
+
+  {
+    path:  '/edit',
+    name: 'EditObject',
+    props: true,
+    component: EditObject,
    
   },
 

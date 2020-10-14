@@ -68,15 +68,7 @@ export default {
       const val = await fetch("http://localhost:3000/products");
       const res = await val.json();
       this.products = res.data;
-    },
-
-   provide(){
-     return {
-       inject: ['eventBus']
-     }
-   },
-
-   
+    }, 
 
   },
 };

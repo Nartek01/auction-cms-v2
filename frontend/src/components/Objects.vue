@@ -4,78 +4,82 @@
       <div class="container-1">
         <div class="box-1">
           <!-- :src="image" -->
-          <img
-            :src="image"
-            class="box"
-            alt="Image unavailable"
-          />
+          <img :src="image" class="box" alt="Image unavailable" />
         </div>
 
         <!-- Object info container-->
         <div class="box-2">
           <div class="box">
-            Name:{{productName}}
-            <br>Category: {{category}}
-            <br>Seller: {{seller}}
-            <br>Status: {{status}}
-            <br>Start price:{{price}} {{currency}}
-            <br>Product id: {{id}}
+            Name:{{ productName }} <br />
+            Category: {{ category }} <br />
+            Seller: {{ seller }} <br />
+            Status: {{ status }} <br />
+            Start price:{{ price }}{{ currency }} <br />
+            Product id: {{ id }}
           </div>
         </div>
- 
+
         <!-- Button container -->
         <div class="box-3 ml-3">
-             <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Details</mdb-btn>
-             <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Edit</mdb-btn>
-             <mdb-btn color="elegant" @click="showModal">Delete</mdb-btn>
+          <mdb-btn color="elegant" @click="selectedObject()"><i class="fas fa-file-invoice"></i> Details</mdb-btn>
+           <router-link :to="{ name: 'EditObject',params: { id: id}}">
+          <mdb-btn color="elegant" rounded><i class="fas fa-hammer"></i> Edit</mdb-btn>
+           </router-link>
+          <mdb-btn color="elegant" @click="showModal">Delete</mdb-btn>
         </div>
       </div>
     </mdb-container>
-
   </div>
 </template>
 
 <script>
-import Modal from '@/components/Modal'
+import Modal from "@/components/Modal";
 import { mdbBtn, mdbContainer } from "mdbvue";
 export default {
   name: "Objects",
   components: {
     mdbBtn,
-    mdbContainer
-  },
-  
-  props: ["productName", "price", "image", "currency", "category", "seller", "status", "id", "imageRef"],
-
-
-methods: {
-  selectedObject(){
- 
-    this.$router.push(`/${this.id}`  )
-
+    mdbContainer,
   },
 
-   showModal(){
+  data() {
+    return {};
+  },
+
+  props: [
+    "productName",
+    "price",
+    "image",
+    "currency",
+    "category",
+    "seller",
+    "status",
+    "id",
+    "imageRef",
+  ],
+
+  methods: {
+    selectedObject() {
+      this.$router.push(`/${this.id}`);
+    },
+
+
+    showModal() {
       this.$buefy.modal.open({
-        parent:this,
+        parent: this,
         component: Modal,
         props: {
           itemName: this.productName,
           itemId: this.id,
-          imageRef: this.imageRef
-       
+          imageRef: this.imageRef,
         },
 
         hasModalCard: true,
         trapFocus: true,
-
-      })
+      });
     },
- 
-}
-
+  },
 };
-
 </script>
 
 <style scoped>
@@ -89,7 +93,7 @@ methods: {
 }
 
 .box-1 {
-  flex-grow:1 1 0px;
+  flex-grow: 1 1 0px;
   order: 1;
 }
 
@@ -112,5 +116,4 @@ methods: {
   height: stretch;
   order: 3;
 }
-
 </style>
