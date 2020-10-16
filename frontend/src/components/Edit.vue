@@ -5,7 +5,7 @@
    
 
     <section v-for="(element,index) in item" :key="index">
-      <form v-if="index == 0">
+      <form @submit.prevent="updateProduct" v-if="index == 0">
         <section>
         <p class="h4 text-center mb-4"></p>
         <div class="grey-text">
@@ -18,7 +18,7 @@
             error="wrong"
             success="right"
           />
-          <mdb-textarea
+          <textarea
             v-model="element.description"
             :row="2"
             label="Object description"
@@ -89,7 +89,7 @@
         </div>
 
         <div class="text-center">
-          <mdb-btn @submit.prevent="updateProduct()" outline="secondary">Save</mdb-btn>
+          <mdb-btn type="submit" outline="secondary">Save</mdb-btn>
         </div>
          </section>
       </form>
@@ -100,13 +100,13 @@
 </template>
 
 <script>
-import { mdbInput, mdbBtn, mdbTextarea } from "mdbvue";
+import { mdbInput, mdbBtn, } from "mdbvue";
 export default {
   name: "EditObject",
   components: {
     mdbInput,
     mdbBtn,
-    mdbTextarea,
+    
   },
 
   data() {
@@ -131,7 +131,7 @@ export default {
     
   },
 
-
+methods: {
     //editing data
 
     async updateProduct() {
@@ -157,6 +157,7 @@ export default {
           alert("Something went wrong!");
         }
     },
+}
 };
 </script>
 

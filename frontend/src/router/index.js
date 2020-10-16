@@ -87,6 +87,14 @@ export default new Router({
   },
 
   {
+    path:  '/edit',
+    name: 'EditObject',
+    props: true,
+    component: EditObject,
+   
+  },
+
+  {
     path:  '/:id',
     name: 'object',
     props: true,
@@ -94,13 +102,7 @@ export default new Router({
    
   },
 
-  {
-    path:  '/edit',
-    name: 'EditObject',
-    props: true,
-    component: EditObject,
-   
-  },
+  
 
     {
       path: '/404',
