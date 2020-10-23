@@ -2,8 +2,9 @@
   <section>
     <h1>Edit an object</h1>
 
-    <form @submit.prevent="editProduct" >
-      <section v-for="(p, index) in product" :key="index">
+    <form @submit.prevent="editProduct" v-for="(p, index) in product" :key="index" >
+      <section v-if="index == 0" >
+     
       <p class="h4 text-center mb-4"></p>
       <div class="grey-text">
         <mdb-input
@@ -83,6 +84,7 @@
       <div class="text-center">
         <mdb-btn type="submit" @submit.prevent="editProduct()"  outline="secondary">Save</mdb-btn>
       </div>
+       
       </section>
     </form>
   </section>
@@ -134,23 +136,27 @@ export default {
      
 		async	editProduct() {
         const formData = new FormData(),
-          product = JSON.stringify(this.product)
-
-
-        for (const i of Object.entries(product)) {
-          formData.append("product", product[i]);          
-        }
-    
-
-			await	fetch("http://localhost:3000/products", {
+        product = JSON.stringify(this.product)
+        Object.entries(this.product).forEach(data => {
+          formData.append(data[0], data[1])
+         
+        })
+        formData.append( 'product', product ) 
+       fetch(`http://localhost:3000/productsedit`, {
 					body: formData,
-					method: 'PUT'
+          method: 'PATCH'
+         
 				})
 					.then(response => response.json())
 					.then(() => {
-						this.getProduct()
-					
-					})
+						this.dismissCountDown = 5
+            this.getProduct()				
+
+      
+          })
+          
+          this.$router.push({ path: "/objects" });
+
 			},
 
 

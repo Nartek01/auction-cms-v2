@@ -85,7 +85,7 @@ app.get('/product', function (req, res) {
 
 
 //editing products
-app.put('/productsedit', (req, res) => {
+app.patch('/productsedit', (req, res) => {
 
   new formidable.IncomingForm().parse(req, (err, fields, files) => {
     if (err) {
@@ -106,13 +106,13 @@ app.put('/productsedit', (req, res) => {
     let reserve_price = updatedData[0]['reserve_price']
     let currency = updatedData[0]['currency']
     let status = updatedData[0]['product_status']
-
-
     let data = {
       product_name, description,category,personal_number,start_price,reserve_price,currency,status
     }
 
-    let sql = "UPDATE products SET product_name = ?, description = ?, category = ?, product_status = ?, personal_number = ?, start_price = ?, reserve_ price = ?, currency = ? WHERE id = ?"
+    
+
+    let sql = "UPDATE products SET product_name = ?, description = ?, category = ?, product_status = ?, personal_number = ?, start_price = ?, reserve_ price = ?, currency = ?" 
 
     console.log(data);
     conn.query(sql, [data,id], function (results, error) {
